@@ -82,8 +82,8 @@ public class Adorner
   // private boolean inExpan;              // whether it is inside <expan> 
 
   private String sentence;              // the sentence to be parsed
-  private String expanSentence; 
-  private String part; 
+  private String expanToken;           
+      // the portion within an <expan> tag to be parsed   
   private Block presentBlock;           // the Block being processed
 
   private ArrayList< Block > blockList; // the blocks forming the sentence
@@ -132,8 +132,7 @@ public class Adorner
     blockUse = new ArrayList< Boolean >();
     tagStack = new Stack< String >(); tagStack.push("@"); // dummy push 
     sentence = "";
-    expanSentence = "";
-    part = "#$$#";
+    expanToken = "";
   }
 
   /**
@@ -191,6 +190,36 @@ public class Adorner
   // }
 
   /**
+   * Generates the adornment for a token using a combination of 
+   * <term> and <gloss> tags in a "list" structure, and writes it to file 
+   * ex:  <term n=token> 
+   *         <gloss n="type1"> ... </gloss>
+   *         <gloss n="type2"> ... </gloss>
+   *         etc..
+   *      </term> 
+   *
+   * @param token the input to be adorned 
+   * @param features the array of attributes to adorn the input with 
+   * 
+   */
+  private void tokenAdorn (String token, String[] features) throws IOException
+  {
+    System.out.println("adding term gloss tags to " + token); 
+    // generates a <term> tag
+    String termTag = TERM_OPEN_PREFIX + "n=\"" + token + "\"" + OPEN_SUFFIX; 
+    indentAndWrite(termTag);
+    // generates a <gloss> tag for each POS 
+    for ( int i = 0; i < features.length; i ++ ) 
+    {
+      String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
+          + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + features[i] + GLOSS_CLOSE; 
+      indentAndWrite(glossTag);
+    }
+
+    indentAndWrite( TERM_CLOSE );
+  }
+
+  /**
    * print a block in the output stream
    * @param	block	the block
    *
@@ -223,25 +252,6 @@ public class Adorner
   {
     indent();
     writer.append( a + "\n" );
-  }
-
-  private int checkExpan( int bPos ) throws IOException 
-  {
-      // we see the ex coming 
-      if (bPos + 1 < blockList.size() && 
-        blockList.get( bPos + 1 ).getTagType() == 4 && 
-        blockList.get( bPos + 1 ).getTagName().equals( "ex" )) 
-      {
-        simpleBlockWrite( blockList.get( bPos + 1 ) );
-      } 
-      // we see the ex again
-      if (blockList.get( bPos ).getTagType() == 4 && 
-       blockList.get( bPos ).getTagName().equals( "ex" )) 
-      {
-        bPos++;
-      } 
-
-      return bPos; 
   }
 
   /**
@@ -348,20 +358,16 @@ public class Adorner
         // TODO need to be careful that expan can be out of choice
         if (blockList.get(bPos).getTagName().equals("expan") && 
               blockList.get(bPos).isOpen()) {
-          String termTag = TERM_OPEN_PREFIX + "n=\"" + 
-            blockList.get(bPos + 1).getTagName() + "\"" + 
-                OPEN_SUFFIX; 
-            indentAndWrite(termTag);
-            System.out.println(expanSentence);
-            String[] list = analyzer.getAllFeatures(
-              analyzer.tokenize( expanSentence )[0]).split(",");
-            for (int i = 0; i < list.length; i++) {
-              String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-                  + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + list[i] + GLOSS_CLOSE; 
-              indentAndWrite(glossTag);
-            }
-          indentAndWrite( TERM_CLOSE );
-          bPos++; // we don't want to print the に character again 
+          System.out.println("**expanToken > " + expanToken + "**");
+          // this token has not been tokenized yet so we need to tokenize it
+          // first before getting its features 
+          String [] features = analyzer.getAllFeatures(
+              analyzer.tokenize( expanToken )[0]).split(",");
+          // we only want the first part of the word to put in the xml 
+          // and we know that the next block in blockList will be that part 
+          // e.g. に
+          tokenAdorn(blockList.get(bPos + 1).getTagName(), features);
+          bPos++; // we don't want to print the first part (に) again 
         }
       }
       else
@@ -397,21 +403,10 @@ public class Adorner
           }
           else
           {
-            // generates a <term> tag
-            System.out.println("adding term gloss tags");
-            System.out.println(" to " + analyzer.getSurfaceForm(result[tPos]));
-            String termTag = TERM_OPEN_PREFIX + "n=\"" + inp + "\"" + 
-                OPEN_SUFFIX; 
-            indentAndWrite(termTag);
-            String[] list = analyzer.getAllFeatures(result[ tPos ]).split(",");
-            // generates a <gloss> tag for each POS 
-            for (int i = 0; i < list.length; i++) {
-              String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-                  + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + list[i] + GLOSS_CLOSE; 
-              indentAndWrite(glossTag);
-            }
-            indentAndWrite( TERM_CLOSE );
+            tokenAdorn(inp, 
+              analyzer.getAllFeatures(result[ tPos ]).split(",")); 
           }
+
           if ( tokenEnd[ tPos ] <= blockEnd.get( bPos ) )
           {
             System.out.println("tPos " + tPos + " >> " + (tPos + 1));
@@ -495,12 +490,7 @@ public class Adorner
       // we know we are inside <expan>, start building "road" to give to 
       // kuromoji 
     } else if (presentBlock.isNonTag() && tagStack.peek().equals("expan")) {
-      expanSentence += presentBlock.getTagName();
-      if (part.equals("#$$#")) {
-        // but we only want the first part of the sentence to put in the xml 
-        // and we use part to attach the explanation to  
-        part = presentBlock.getTagName();
-      }
+      expanToken += presentBlock.getTagName();
     } 
 
     blockUse.add( comp.length() > 0 );

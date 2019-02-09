@@ -111,7 +111,7 @@ public class Main
     } else {
       error(); 
     }
-    
+    System.out.println(analyzer);
     Adorner ad = new Adorner( analyzer, inputName, outputName );
     ad.process();
   }
