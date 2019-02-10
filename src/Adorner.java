@@ -341,6 +341,10 @@ public class Adorner
      */
     int bPos = 0;
     int tPos = 0;
+    String piece = "";
+    String word = "";
+    int i = 0; 
+    String[] expanResult = analyzer.tokenize( expanToken ); 
     for ( bPos = 0; bPos < blockList.size(); bPos ++ )
     {
       System.out.println("===========");
@@ -358,15 +362,77 @@ public class Adorner
         // TODO need to be careful that expan can be out of choice
         if (blockList.get(bPos).getTagName().equals("expan") && 
               blockList.get(bPos).isOpen()) {
+          // run kuromoji on new sentence 
           System.out.println("**expanToken > " + expanToken + "**");
+          //String[] expanResult = analyzer.tokenize( expanToken ); 
+          // this will give us a string array of the results 
+          // compare getsurfaceform of expanresult[i] 
+          // with blockList.get(bPos + 1)
+          piece = blockList.get(bPos + 1).getTagName();
+          word = analyzer.getSurfaceForm(expanResult[i]);
+          while (piece.indexOf(word) == 0) {
+            // print out the explanation for word 
+            String [] features = analyzer.getAllFeatures(
+              expanResult[i]).split(",");
+            tokenAdorn(word, features);
+            piece = piece.substring(word.length(), piece.length()); 
+            if (piece.length() == 0) {
+              break;
+            }
+            i++;
+            word = analyzer.getSurfaceForm(expanResult[i]);
+          }
+
+          String [] features = analyzer.getAllFeatures(
+              expanResult[i]).split(",");
+          tokenAdorn(piece, features);
+          // now we print ex, thing inside ex, and the thing after ex 
+          // now piece is always going to be smaller than word
+
+
+          // w<ex>or</ex>d1word2
+          // expanResult[] : word1 word2 
+          // piece = w        word = word1 
+          // w.indexOf(word1) != 0 
+          // print expanResult[0] = word1 to w 
+
+          // word1word2wo<ex>r</ex>d3word4
+          // i = 0
+          // len(expanResults) = 3 
+          // piece = word1word2wo       word = word1 
+          // piece = word2wo            word = word2
+          // i = 1
+          // piece = wo                 word = word3 
+          // i = 2
+          //
+
+          // word = rd3
+          // word = d3 
+          // word = "" done 
+          // now ready for word = word4
+          
+          //    if it is fully contained, give the explanation and 
+          //    then we keep comparing 
+          //    expanResult[i + 1] until it is not fully contained 
+          //    then stop b/c we know something is going on
+          //    and that means the word is broken by an <ex> 
+          // give the last part before <ex> gets the definition 
+          
           // this token has not been tokenized yet so we need to tokenize it
           // first before getting its features 
-          String [] features = analyzer.getAllFeatures(
-              analyzer.tokenize( expanToken )[0]).split(",");
-          // we only want the first part of the word to put in the xml 
-          // and we know that the next block in blockList will be that part 
-          // e.g. に
-          tokenAdorn(blockList.get(bPos + 1).getTagName(), features);
+          
+          // for (int i = 0; i < expanResult.length; i++) 
+          // {
+          //   String [] features = analyzer.getAllFeatures(
+          //     expanResult[i]).split(",");
+          //   // we only want the first part of the word to put in the xml 
+          //   // and we know that the next block in blockList will be that part 
+          //   // e.g. に
+          //   tokenAdorn(analyzer.getSurfaceForm(expanResult[i]), features);
+          //   //tokenAdorn(blockList.get(bPos + 1).getTagName(), features);
+          // }
+          
+          
           bPos++; // we don't want to print the first part (に) again 
         }
       }
