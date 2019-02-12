@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack; 
+import java.util.LinkedList; 
 
 import org.atilika.kuromoji.Token;
 import org.atilika.kuromoji.Tokenizer;
@@ -339,37 +340,62 @@ public class Adorner
      * token; otherwise, move on to the next Block object
      * by breaking the internal loop.
      */
+
     int bPos = 0;
     int tPos = 0;
     String piece = "";
     String word = "";
+    String residual = ""; 
+    boolean temp = true; 
     int i = 0; 
+    LinkedList<String> linkedTags = new LinkedList<>(); 
+    System.out.println("** expanToken  " + expanToken + "**");
     String[] expanResult = analyzer.tokenize( expanToken ); 
+    System.out.println("** len of expanResult   " + expanResult.length + "**");
+
     for ( bPos = 0; bPos < blockList.size(); bPos ++ )
     {
       System.out.println("===========");
       System.out.println("[ " + blockList.get(bPos) + " ]");
       System.out.println("[" + blockList.get(bPos).getTagType() + "   " + 
                           blockList.get(bPos).getTagName() + "]");
+      // tried to build a stack of current tags seen so far 
+      if (blockList.get(bPos).isOpen()) {
+        linkedTags.addFirst(blockList.get(bPos).getTagName());
+      } else if (blockList.get(bPos).isClose()) {
+        linkedTags.remove(blockList.get(bPos).getTagName());
+      }
       
       if ( !blockUse.get( bPos ) ) // not doing the definition mode 
       {
+        System.out.println("current chain  " + linkedTags);
         System.out.println("blockUse.get(bPos)    " + blockUse.get( bPos ));
         System.out.println("blockList.get(bPos)   " + blockList.get( bPos ));
         simpleBlockWrite( blockList.get( bPos ) );
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
         // TODO need to be careful that expan can be out of choice
-        if (blockList.get(bPos).getTagName().equals("expan") && 
-              blockList.get(bPos).isOpen()) {
+        if (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
+          && linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan"))
+          {
           // run kuromoji on new sentence 
-          System.out.println("**expanToken > " + expanToken + "**");
           //String[] expanResult = analyzer.tokenize( expanToken ); 
           // this will give us a string array of the results 
           // compare getsurfaceform of expanresult[i] 
           // with blockList.get(bPos + 1)
           piece = blockList.get(bPos + 1).getTagName();
+          if (residual.length() > 0) {
+            simpleBlockWrite(new Block(residual));
+            piece = piece.substring(residual.length(), piece.length());
+            i++; 
+          }
+          if (i == expanResult.length) {
+            break;
+          }
           word = analyzer.getSurfaceForm(expanResult[i]);
+          System.out.println("piece     " + piece); 
+          System.out.println("word      " + word);
+          // assumes that length of piece is longer than word 
           while (piece.indexOf(word) == 0) {
             // print out the explanation for word 
             String [] features = analyzer.getAllFeatures(
@@ -377,39 +403,28 @@ public class Adorner
             tokenAdorn(word, features);
             piece = piece.substring(word.length(), piece.length()); 
             if (piece.length() == 0) {
+              System.out.println("breaking now"); 
               break;
             }
             i++;
             word = analyzer.getSurfaceForm(expanResult[i]);
+            System.out.println("## i " + i); 
+            System.out.println("## expanResult[i]    " + expanResult[i]); 
+            System.out.println("## piece      " + piece +  " ##");
+            System.out.println("## word      " + word +  " ##");  
           }
-
-          String [] features = analyzer.getAllFeatures(
+          System.out.println("##### out of while with... #####");
+          System.out.println("##### piece     " + piece +  " ##");
+          System.out.println("##### word      " + word +  " ##");  
+          // when that is no longer true, there is something segmenting the 
+          // next word to parse into fragments 
+          if (piece.length() > 0) {
+            String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-          tokenAdorn(piece, features);
+            tokenAdorn(piece, features);
+          }
           // now we print ex, thing inside ex, and the thing after ex 
           // now piece is always going to be smaller than word
-
-
-          // w<ex>or</ex>d1word2
-          // expanResult[] : word1 word2 
-          // piece = w        word = word1 
-          // w.indexOf(word1) != 0 
-          // print expanResult[0] = word1 to w 
-
-          // word1word2wo<ex>r</ex>d3word4
-          // i = 0
-          // len(expanResults) = 3 
-          // piece = word1word2wo       word = word1 
-          // piece = word2wo            word = word2
-          // i = 1
-          // piece = wo                 word = word3 
-          // i = 2
-          //
-
-          // word = rd3
-          // word = d3 
-          // word = "" done 
-          // now ready for word = word4
           
           //    if it is fully contained, give the explanation and 
           //    then we keep comparing 
@@ -434,6 +449,34 @@ public class Adorner
           
           
           bPos++; // we don't want to print the first part (に) again 
+        } else if (!linkedTags.isEmpty() 
+          && linkedTags.getFirst().equals("expan")
+          && linkedTags.indexOf("expan") != linkedTags.lastIndexOf("expan")
+          && blockList.get(bPos + 4).getTagName().indexOf(word) != 0 
+          && temp)
+        {
+          // we only ever want to visit this code once to adjust i 
+          i++; 
+          word = analyzer.getSurfaceForm(expanResult[i]);
+          temp = false; 
+          System.out.println("nested expan word        " + word);
+          System.out.println("nested expan piece       " + piece);
+          System.out.println("nested expan bPos + 1    " 
+            + blockList.get(bPos + 1).getTagName());
+          System.out.println("nested expan bPos + 4    " 
+            + blockList.get(bPos + 4).getTagName());
+
+        } else if (!linkedTags.isEmpty() 
+          && linkedTags.getFirst().equals("ex")) {
+          String chars = blockList.get(bPos + 1).getTagName(); 
+          piece = piece + chars; 
+          if (word.indexOf(piece) == 0) {
+            residual = word.substring(piece.length(), word.length()); 
+          }
+          System.out.println("ex piece   [" + piece + "]"); 
+          System.out.println("ex residual   " + residual); 
+          simpleBlockWrite( blockList.get( bPos + 1 ) );
+          bPos++; 
         }
       }
       else
