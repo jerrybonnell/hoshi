@@ -116,6 +116,8 @@ public class Adorner
 
     parser = new XMLProcessor( reader );
     iter = parser.iterator();
+    tagStack = new Stack< String >(); 
+    tagStack.push("@"); // dummy push 
 
     cleanBuffer();
     depth = 0;
@@ -131,7 +133,6 @@ public class Adorner
     blockStart = new ArrayList< Integer >();
     blockEnd = new ArrayList< Integer >();
     blockUse = new ArrayList< Boolean >();
-    tagStack = new Stack< String >(); tagStack.push("@"); // dummy push 
     sentence = "";
     expanToken = "";
   }
@@ -353,9 +354,9 @@ public class Adorner
     String[] expanResult = analyzer.tokenize( expanToken ); 
     System.out.println("** len of expanResult   " + expanResult.length + "**");
     for (int index = 0 ; index < expanResult.length; index++) {
-      System.out.print("[" + expanResult[index] + "]");
+      System.out.print("[" + analyzer.getSurfaceForm(expanResult[index]) + "]");
     }
-    System.out.println("****");
+    System.out.println();
 
     for ( bPos = 0; bPos < blockList.size(); bPos ++ )
     {
@@ -379,7 +380,11 @@ public class Adorner
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
         if (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
-          && linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan")
+          && (
+            linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan") || 
+            // if piece is empty then we see a <expan> again, it might be a new
+            // word 
+            piece.length() == 0) 
           && blockList.get(bPos + 1).isNonTag())
           {
           // first <expan> we seen so far 
@@ -445,7 +450,7 @@ public class Adorner
             residual = word.substring(piece.length(), word.length()); 
           }
           System.out.println("ex piece   [" + piece + "]"); 
-          System.out.println("ex residual   " + residual); 
+          System.out.println("ex residual   [" + residual + "]"); 
           simpleBlockWrite( blockList.get( bPos + 1 ) );
           bPos++; 
         } 
@@ -455,13 +460,27 @@ public class Adorner
         while ( tPos < result.length &&
             tokenStart[ tPos ] < blockEnd.get( bPos ) )
         {
-          String inp = sentence.substring(
-                Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
-                // by removing Math.min, we assume that tokenEnd[tPos] is 
-                // always smaller than blockEnd.get(bPos)
-                tokenEnd[ tPos ]);
+          String inp = "";
+          if (bPos + 1 < blockList.size() 
+            && !blockList.get(bPos + 1).isNonTag()) {
+            inp = sentence.substring(
+                  Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
+                  // by removing Math.min, we assume that tokenEnd[tPos] is 
+                  // always smaller than blockEnd.get(bPos)
+                  Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
+          } else {
+            inp = sentence.substring(
+                  Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
+                  // by removing Math.min, we assume that tokenEnd[tPos] is 
+                  // always smaller than blockEnd.get(bPos)
+                  tokenEnd[ tPos ]); 
+          }
           System.out.println("inp : [" + inp + "]");
           System.out.println("********" + inp);
+          System.out.println("********" + blockList.get(bPos));
+          if (bPos + 1 < blockList.size()) {
+            System.out.println("********" + blockList.get(bPos + 1));
+          }
           System.out.println(tokenStart[ tPos ]);
           System.out.println(blockStart.get( bPos ));
           System.out.println(tokenEnd[ tPos ]);
@@ -473,11 +492,17 @@ public class Adorner
             // of this block is not following the kuromoji order; that's why 
             // we need to continue to the next token; in other words we are 
             // recreating the Math.min() operation here 
-            if (tokenEnd[ tPos ] >= blockEnd.get( bPos - 1 )) {
+            if (tokenEnd[ tPos ] >= blockEnd.get( bPos - 1 ) 
+               && bPos - 1 >= 0 
+               && blockList.get(bPos - 1).isNonTag()) {
+              // we've already printed this inp so skip it, as is the case 
+              // when the next character (inp) is on a newline 
               tPos++; 
               continue;
             } else {
-              indentAndWrite( inp );
+              // if we're here, there is some residual to print out 
+              System.out.println("writing w/o def  " + inp);
+              indentAndWrite( inp ); // prints the character after </ex>
             }
             
           }
@@ -517,6 +542,7 @@ public class Adorner
    */
   private void incorporate()
   {
+    System.out.println("tagStack  " + tagStack);
     /////  update choice and corr 
     if (presentBlock.isOpen() 
       && presentBlock.getTagName().equals( "choice" ))
