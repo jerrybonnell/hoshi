@@ -379,23 +379,46 @@ public class Adorner
         simpleBlockWrite( blockList.get( bPos ) );
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
-        if (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
+        if ((!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
           && (
             linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan") || 
             // if piece is empty then we see a <expan> again, it might be a new
             // word 
             piece.length() == 0) 
           && blockList.get(bPos + 1).isNonTag())
+          // we need to come back in if there is some residual left 
+          || (residual.length() > 0 && !linkedTags.getFirst().equals("ex"))
+          )
           {
           // first <expan> we seen so far 
           piece = blockList.get(bPos + 1).getTagName();
           if (residual.length() > 0) {
             System.out.println("residual > 0 true");
+            if (piece.length() < residual.length()) {
+              // situation where a word is segmented by multiple <ex>
+              System.out.println("@@ piece < residual now");
+              System.out.println("@@ piece " + piece); 
+              System.out.println("@@ residual " + residual); 
+              //residual = residual.substring(piece.length(), residual.length());
+              System.out.println("@@ residual updated! " + residual); 
+              simpleBlockWrite(new Block(piece));
+              bPos++;
+              continue;
+            }
             simpleBlockWrite(new Block(residual));
             piece = piece.substring(residual.length(), piece.length());
+            if (piece.length() == 0 && i < expanResult.length) {
+              // if piece is empty and there is more to go from kuromoji then 
+              // we should update it 
+              bPos++; 
+              piece = blockList.get(bPos + 1).getTagName(); 
+              System.out.println("piece updated!  [" + piece + "]");
+            }
             residual = "";
-            //bPos++;
-            //i++
+            if (!blockList.get(bPos + 1).isNonTag()) {
+              // piece may become a tag like expan
+              continue;
+            }
           }
           if (i == expanResult.length) {
             if (piece.length() > 0) {
@@ -405,7 +428,9 @@ public class Adorner
             System.out.println("  >>>    continued");
             System.out.println("piece  [" + piece + "]");
             System.out.println("word   [" + word + "]");  
-            System.out.println("residual   [" + residual + "]"); 
+            System.out.println("residual   [" + residual + "]");
+            System.out.println("blockList   [" + 
+              blockList.get(bPos).getTagName() + "]");  
             continue;
           }
           System.out.println("piece     [" + piece + "]"); 
@@ -443,14 +468,19 @@ public class Adorner
           i++; 
           bPos++; // we don't want to print the first part (に) again 
         } else if (!linkedTags.isEmpty() 
-          && linkedTags.getFirst().equals("ex")) {
+          && (linkedTags.getFirst().equals("ex"))) {
           String chars = blockList.get(bPos + 1).getTagName(); 
           piece = piece + chars; 
+          System.out.println("ex word [" + word + "]"); 
+          System.out.println("ex piece [" + piece + "]"); 
           if (word.indexOf(piece) == 0) {
             residual = word.substring(piece.length(), word.length()); 
+          } else if (residual.indexOf(piece) == 0) {
+            // compensate for chains of <ex> tags 
+            residual = residual.substring(piece.length(), residual.length()); 
           }
-          System.out.println("ex piece   [" + piece + "]"); 
-          System.out.println("ex residual   [" + residual + "]"); 
+          System.out.println("ex piece updated   [" + piece + "]"); 
+          System.out.println("ex residual updated [" + residual + "]"); 
           simpleBlockWrite( blockList.get( bPos + 1 ) );
           bPos++; 
         } 
