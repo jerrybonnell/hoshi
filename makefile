@@ -15,7 +15,7 @@ KURO = jar/kuromoji-0.7.7.jar
 MECAB = jar/MeCab.jar
 
 # name of input file 
-INPUT_FILE = data/small-expan6a.xml
+INPUT_FILE = data/small.xml
 #INPUT_FILE = dazai_said.xml
 # name of output file 
 OUTPUT_FILE = out/test-stack.xml

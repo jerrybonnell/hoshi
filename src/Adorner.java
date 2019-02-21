@@ -222,6 +222,41 @@ public class Adorner
   }
 
   /**
+   * Generates the adornment for a token using a combination of 
+   * <term> and <gloss> tags in a "list" structure, and writes it to file 
+   * ex:  <term n=token> 
+   *         <gloss n="type1"> ... </gloss>
+   *         <gloss n="type2"> ... </gloss>
+   *         etc..
+   *      </term> 
+   *
+   * @param token the input to be adorned 
+   * @param features the array of attributes to adorn the input with
+   * @param original the original word before segmentation
+   * 
+   */
+  private void tokenAdorn (String token, String[] features, String original) 
+    throws IOException
+  {
+    System.out.println("add SPECIAL term gloss tags to " + token); 
+    // generates a <term> tag
+    String termTag = TERM_OPEN_PREFIX + "n=\"" + token + "\"" + OPEN_SUFFIX; 
+    indentAndWrite(termTag);
+    String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
+          + "original"+ "\"" + OPEN_SUFFIX + original + GLOSS_CLOSE; 
+    indentAndWrite(glossTag);
+    // generates a <gloss> tag for each POS 
+    for ( int i = 0; i < features.length; i ++ ) 
+    {
+      glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
+          + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + features[i] + GLOSS_CLOSE; 
+      indentAndWrite(glossTag);
+    }
+
+    indentAndWrite( TERM_CLOSE );
+  }
+
+  /**
    * print a block in the output stream
    * @param	block	the block
    *
@@ -463,7 +498,7 @@ public class Adorner
           if (piece.length() > 0) {
             String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-            tokenAdorn(piece, features);
+            tokenAdorn(piece, features, word);
           }
           i++; 
           bPos++; // we don't want to print the first part (に) again 
