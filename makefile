@@ -15,7 +15,7 @@ KURO = jar/kuromoji-0.7.7.jar
 MECAB = jar/MeCab.jar
 
 # name of input file 
-INPUT_FILE = data/small.xml
+INPUT_FILE = data/small-expan8.xml
 #INPUT_FILE = dazai_said.xml
 # name of output file 
 OUTPUT_FILE = out/test-stack.xml
@@ -199,6 +199,63 @@ test-all:
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_SPLIT_1) --output $(OUTPUT_FILE) > /dev/null
 	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_1)
+
+cp-all: 
+	make compile
+	# test original file
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_ORIG_FILE) --output $(OUTPUT_FILE) > /dev/null 
+	cp $(OUTPUT_FILE) $(SOL_ORIG_FILE)
+	# <expan> tests 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_0) --output $(OUTPUT_FILE) > /dev/null 
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_0)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_1) --output $(OUTPUT_FILE) > /dev/null 
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_1) 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_2) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_2) 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_3) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_3)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_3B) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_3B)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_3C) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_3C)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_4) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_4)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_5) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_5)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_6) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_6)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_6A) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_6A)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_7) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EXPAN_7)
+	# corr tests 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_CORR_1) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_CORR_1)
+	# ex tests 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EX_1) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_EX_1)	
+	# nested choice tests 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_NESTED_1) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_NESTED_1)
+	# split tests 
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_SPLIT_1) --output $(OUTPUT_FILE) > /dev/null
+	cp $(OUTPUT_FILE) $(SOL_TEST_SPLIT_1)
 
 
 clean: 

@@ -225,6 +225,7 @@ public class Adorner
    * Generates the adornment for a token using a combination of 
    * <term> and <gloss> tags in a "list" structure, and writes it to file 
    * ex:  <term n=token> 
+   *         <gloss n="token"> original </gloss>
    *         <gloss n="type1"> ... </gloss>
    *         <gloss n="type2"> ... </gloss>
    *         etc..
@@ -243,7 +244,7 @@ public class Adorner
     String termTag = TERM_OPEN_PREFIX + "n=\"" + token + "\"" + OPEN_SUFFIX; 
     indentAndWrite(termTag);
     String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-          + "original"+ "\"" + OPEN_SUFFIX + original + GLOSS_CLOSE; 
+          + "token"+ "\"" + OPEN_SUFFIX + original + GLOSS_CLOSE; 
     indentAndWrite(glossTag);
     // generates a <gloss> tag for each POS 
     for ( int i = 0; i < features.length; i ++ ) 
@@ -382,7 +383,6 @@ public class Adorner
     String piece = "";
     String word = "";
     String residual = ""; 
-    boolean temp = true; 
     int i = 0; // wordIndex 
     LinkedList<String> linkedTags = new LinkedList<>(); 
     System.out.println("** expanToken  " + expanToken + "**");
@@ -406,23 +406,28 @@ public class Adorner
         linkedTags.remove(blockList.get(bPos).getTagName());
       }
       
+      System.out.println("current chain  " + linkedTags);
+      System.out.println("blockUse.get(bPos)    " + blockUse.get( bPos ));
+      System.out.println("blockList.get(bPos)   " + blockList.get( bPos ));
+
       if ( !blockUse.get( bPos ) ) // not doing the definition mode 
       {
-        System.out.println("current chain  " + linkedTags);
-        System.out.println("blockUse.get(bPos)    " + blockUse.get( bPos ));
-        System.out.println("blockList.get(bPos)   " + blockList.get( bPos ));
         simpleBlockWrite( blockList.get( bPos ) );
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
-        if ((!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
-          && (
-            linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan") || 
-            // if piece is empty then we see a <expan> again, it might be a new
-            // word 
-            piece.length() == 0) 
-          && blockList.get(bPos + 1).isNonTag())
+        if (
+          (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
+            && (
+                linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan")
+                // if piece is empty then we see a <expan> again, it might 
+                // be a new word 
+                || piece.length() == 0
+              ) 
+            && blockList.get(bPos + 1).isNonTag()
+          )
           // we need to come back in if there is some residual left 
           || (residual.length() > 0 && !linkedTags.getFirst().equals("ex"))
+          //|| (!linkedTags.isEmpty() && linkedTags.getFirst().equals("corr"))
           )
           {
           // first <expan> we seen so far 
@@ -493,6 +498,7 @@ public class Adorner
           System.out.println("##### out of while with...");
           System.out.println("##### piece     [" + piece +  "]");
           System.out.println("##### word      [" + word +  "]");  
+          System.out.println("##### residual  [" + residual + "]");
           // when that is no longer true, there is something segmenting the 
           // next word to parse into fragments 
           if (piece.length() > 0) {
@@ -502,8 +508,11 @@ public class Adorner
           }
           i++; 
           bPos++; // we don't want to print the first part (に) again 
-        } else if (!linkedTags.isEmpty() 
-          && (linkedTags.getFirst().equals("ex"))) {
+        } else if (
+            (!linkedTags.isEmpty() && (linkedTags.getFirst().equals("ex"))) 
+            //|| (!linkedTags.isEmpty() && linkedTags.getFirst().equals("corr"))
+          ) 
+        {
           String chars = blockList.get(bPos + 1).getTagName(); 
           piece = piece + chars; 
           System.out.println("ex word [" + word + "]"); 
@@ -522,6 +531,7 @@ public class Adorner
       }
       else
       {
+        //boolean originalAdded = false; // has a gloss tag been added for orig
         while ( tPos < result.length &&
             tokenStart[ tPos ] < blockEnd.get( bPos ) )
         {
@@ -530,21 +540,25 @@ public class Adorner
             && !blockList.get(bPos + 1).isNonTag()) {
             inp = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
-                  // by removing Math.min, we assume that tokenEnd[tPos] is 
-                  // always smaller than blockEnd.get(bPos)
                   Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
+          //  originalAdded = true;
+            System.out.println("if inp   " + inp); 
           } else {
             inp = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
                   // by removing Math.min, we assume that tokenEnd[tPos] is 
-                  // always smaller than blockEnd.get(bPos)
-                  tokenEnd[ tPos ]); 
+                  // smaller than blockEnd.get(bPos)
+                  tokenEnd[ tPos ]);
+            System.out.println("else inp    " + inp);  
           }
           System.out.println("inp : [" + inp + "]");
           System.out.println("********" + inp);
           System.out.println("********" + blockList.get(bPos));
           if (bPos + 1 < blockList.size()) {
             System.out.println("********" + blockList.get(bPos + 1));
+            if (!blockList.get(bPos + 1).getTagName().equals("choice")) {
+            //  originalAdded = false;
+            }
           }
           System.out.println(tokenStart[ tPos ]);
           System.out.println(blockStart.get( bPos ));
@@ -573,8 +587,28 @@ public class Adorner
           }
           else
           {
-            tokenAdorn(inp, 
-              analyzer.getAllFeatures(result[ tPos ]).split(",")); 
+            String temp = sentence.substring(
+                  Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
+                  Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
+            System.out.println("temp " + temp);
+            String kuro = sentence.substring(
+                  Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
+                  tokenEnd[ tPos ]);
+            System.out.println("kuro " + kuro);
+
+            if (!temp.equals(kuro) && 
+              // additional case is if next block happens to be a non-tag, as 
+              // in the case of small-split.xml 
+              bPos + 1 < blockList.size() &&!blockList.get(bPos + 1).isNonTag())
+            {
+              tokenAdorn(inp, 
+                analyzer.getAllFeatures(result[ tPos ]).split(","), kuro);
+            } else 
+            {
+              tokenAdorn(inp, 
+                analyzer.getAllFeatures(result[ tPos ]).split(","));
+            }
+             
           }
 
           if ( tokenEnd[ tPos ] <= blockEnd.get( bPos ) )
@@ -653,7 +687,12 @@ public class Adorner
     String comp = "";
     // not equal to expan is important because otherwise kuromoji will eat 
     // those characters 
-    if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
+    // TODO
+    /*if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
+        && tagStack.contains("expan")) 
+    {
+      expanToken += presentBlock.getTagName();
+    } else */if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
         && !tagStack.peek().equals("expan"))
     {
       comp = presentBlock.getTagName();
