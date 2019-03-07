@@ -15,7 +15,8 @@ KURO = jar/kuromoji-0.7.7.jar
 MECAB = jar/MeCab.jar
 
 # name of input file 
-INPUT_FILE = data/small-expan8.xml
+INPUT_FILE = data/small-expan9.xml
+#INPUT_FILE = data/small.xml
 #INPUT_FILE = dazai_said.xml
 # name of output file 
 OUTPUT_FILE = out/test-stack.xml
@@ -33,6 +34,8 @@ TEST_EXPAN_5 = data/small-expan5.xml
 TEST_EXPAN_6 = data/small-expan6.xml
 TEST_EXPAN_6A = data/small-expan6a.xml
 TEST_EXPAN_7 = data/small-expan7.xml
+TEST_EXPAN_8 = data/small-expan8.xml
+TEST_EXPAN_9 = data/small-expan9.xml
 TEST_CORR_1 = data/small-corr1.xml
 TEST_NESTED_1 = data/small-nested1.xml
 TEST_EX_1 = data/small-ex1.xml
@@ -51,6 +54,8 @@ SOL_TEST_EXPAN_5 = solution/small-expan5-sol.xml
 SOL_TEST_EXPAN_6 = solution/small-expan6-sol.xml
 SOL_TEST_EXPAN_6A = solution/small-expan6a-sol.xml
 SOL_TEST_EXPAN_7 = solution/small-expan7-sol.xml
+SOL_TEST_EXPAN_8 = solution/small-expan8-sol.xml
+SOL_TEST_EXPAN_9 = solution/small-expan9-sol.xml
 SOL_TEST_CORR_1 = solution/small-corr1-sol.xml
 SOL_TEST_NESTED_1 = solution/small-nested1-sol.xml
 SOL_TEST_EX_1 = solution/small-ex1-sol.xml
@@ -183,6 +188,12 @@ test-all:
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_EXPAN_7) --output $(OUTPUT_FILE) > /dev/null
 	diff $(OUTPUT_FILE) $(SOL_TEST_EXPAN_7)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_8) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_EXPAN_8)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_EXPAN_9) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_EXPAN_9)
 	# corr tests 
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_CORR_1) --output $(OUTPUT_FILE) > /dev/null

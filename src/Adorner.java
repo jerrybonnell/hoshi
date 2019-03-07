@@ -427,9 +427,10 @@ public class Adorner
           )
           // we need to come back in if there is some residual left 
           || (residual.length() > 0 && !linkedTags.getFirst().equals("ex"))
-          //|| (!linkedTags.isEmpty() && linkedTags.getFirst().equals("corr"))
+          //|| (residual.length() > 0 && linkedTags.getFirst().equals("corr"))
           )
           {
+          System.out.println("in the if");
           // first <expan> we seen so far 
           piece = blockList.get(bPos + 1).getTagName();
           if (residual.length() > 0) {
@@ -445,6 +446,7 @@ public class Adorner
               bPos++;
               continue;
             }
+            System.out.println("simpleBlockWrite: [" + residual + "]");
             simpleBlockWrite(new Block(residual));
             piece = piece.substring(residual.length(), piece.length());
             if (piece.length() == 0 && i < expanResult.length) {
@@ -525,9 +527,62 @@ public class Adorner
           }
           System.out.println("ex piece updated   [" + piece + "]"); 
           System.out.println("ex residual updated [" + residual + "]"); 
+          System.out.println("simpleBlockWrite : [ "
+            + blockList.get( bPos + 1 ) + " ]");
           simpleBlockWrite( blockList.get( bPos + 1 ) );
           bPos++; 
-        } 
+        } else if (
+          !linkedTags.isEmpty() && linkedTags.getFirst().equals("corr")  
+          && linkedTags.contains("expan") && blockList.get(bPos + 1).isNonTag()
+          ) 
+        {
+          String chars = blockList.get(bPos + 1).getTagName(); 
+          //piece = piece + chars; 
+          System.out.println("corr word [" + word + "]"); 
+          System.out.println("corr piece [" + piece + "]"); 
+          if (word.indexOf(piece) == 0 && piece.length() != 0) {
+            residual = word.substring(piece.length(), word.length());
+            System.out.println("sbw : [" + residual + "]");
+            simpleBlockWrite(new Block(residual)); 
+          }
+          piece = chars;
+          if (piece.indexOf(residual) == 0) {
+            piece = piece.substring(residual.length(), piece.length());
+          }
+
+          System.out.println("corr piece updated   [" + piece + "]"); 
+          System.out.println("corr residual updated [" + residual + "]"); 
+          System.out.println("corr simpleBlockWrite : [ "
+            + blockList.get( bPos + 1 ) + " ]"); 
+          word = analyzer.getSurfaceForm(expanResult[i]);
+          System.out.println("corr word [" + word + "]");
+
+          while (piece.indexOf(word) == 0) {
+            // print out the explanation for word 
+            String [] features = analyzer.getAllFeatures(
+              expanResult[i]).split(",");
+            tokenAdorn(word, features);
+            piece = piece.substring(word.length(), piece.length()); 
+            if (piece.length() == 0) {
+              System.out.println("breaking now"); 
+              break;
+            }
+            i++;
+            word = analyzer.getSurfaceForm(expanResult[i]);
+            System.out.println("#c# i " + i); 
+            System.out.println("#c# expanResult[i]    " + expanResult[i]); 
+            System.out.println("#c# piece      " + piece +  " ##");
+            System.out.println("#c# word      " + word +  " ##");  
+          }
+          if (piece.length() > 0) {
+            String [] features = analyzer.getAllFeatures(
+              expanResult[i]).split(",");
+            tokenAdorn(piece, features, word);
+          }
+          bPos++; 
+          i++;
+          residual = "";
+        }
       }
       else
       {
@@ -688,11 +743,11 @@ public class Adorner
     // not equal to expan is important because otherwise kuromoji will eat 
     // those characters 
     // TODO
-    /*if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
+    if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
         && tagStack.contains("expan")) 
     {
       expanToken += presentBlock.getTagName();
-    } else */if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
+    } else if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
         && !tagStack.peek().equals("expan"))
     {
       comp = presentBlock.getTagName();
