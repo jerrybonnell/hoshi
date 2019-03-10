@@ -1,50 +1,59 @@
-import subprocess
-import sys, getopt
+import sys
+import getopt
+from pprint import pprint
+import re
 
 #command = "pcregrep -n -Mi '<gloss n=\"type1\">副詞</gloss>(\n.*){0,7}<gloss n=\"lemma\">必ず</gloss>' out/test-stack.xml | awk '{print $1}' FS=\"<\" | cut -f1 -d \":\""
+
 def parse(inputs):
     print(inputs)
-    # TODO what happens when you only give lemma 
-    gloss = "'<gloss n=\"type1\">名詞</gloss>(\n.*){0,7}" + \
-         "<gloss n=\"type2\">一般</gloss>' "
-    command = "pcregrep -n -Mi " + gloss + inputs[0] + \
-        " | awk '{print $1}' FS=\"<\" | cut -f1 -d \":\""
+    # build regular expression
+    regex = r"("
+    for key, value in inputs.items():
+        if value is not None and key != 'infile':
+            regex += key + "=\"" + value + "\"" + " "
+        elif key != 'infile':
+            regex += ".*"
 
-    result = subprocess.Popen(command, 
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-    output, err = result.communicate()
+    if regex[-1] == ' ':
+        regex = regex[:-1]  # trim extra white space
+    regex += ")"
+    # regex = "(type1=\"助詞\" .*type3=\"引用\".*.*.*.*)"
+    # need to do an optimization if we have runs of .*
+    regex = re.sub(r'(\.\*)\1+', r'\1', regex)
+    print(regex)
+    f = open(inputs['infile'], 'r')
+    lines = f.readlines()
+    f.close()
 
-    output_str = str(output)
-    output_str = output_str[2:-1] # remove the b and single quotes from output
-    result_list = output_str.replace(" ", "").split("\\n\\n")
-    # clean up whitespace
-    result_list = [int(r) for r in result_list if r.isdigit()] 
-    result_list = [r - 1 for r in result_list] # TODO deal with offset 
-    # sed pattern is 'q;d'
-    patterns = [str(r) + 'q;d' for r in result_list]
-    output_list = []
-    for pattern in patterns: 
-        # sed "136q;d" out/test-stack.xml 
-        command = "sed '" + pattern + "' " + inputs[0] + \
-            " | grep -o '\".*\"' " + "| tr -d '\"'"
-        result = subprocess.Popen(command, 
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        output, err = result.communicate()
-        output_list.append(output.decode().replace("\n", ""))
+    # Iterate each line
+    lis = []
+    for i in range(len(lines)):
+        # Regex applied to each line
+        match = re.search(regex, lines[i])
+        # situation where text is segmented
+        if "token" in lines[i] and match:
+            # just get the token b/c it has the answer
+            lis.append(lines[i].split("\"")[1])
+        elif match:
+            # NOTE we should never have an exception
+            lis.append(lines[i + 1].strip())
 
-    words = set(output_list)
-    print(words)
+    words = set(lis)
+    pprint(words)
     print("num : " + str(len(words)))
+
 
 def main(argv):
     inputfile = None
     type1 = type2 = type3 = type4 = None
-    number = rule = lemma = spelled = spoken = None
+    number = rule = root = spelled = spoken = None
     try:
         opts, args = getopt.getopt(argv,
-            "hi:1:2:3:4:n:r:l:s:p:",
-            ["ifile=","type1=","type2=","type3=","type4=",
-            "number=","rule=","lemma=","spelled=","spoken="])
+                                   "hi:1:2:3:4:n:r:l:s:p:",
+                                   ["ifile=", "type1=", "type2=", "type3=",
+                                    "type4=", "number=", "rule=", "root=",
+                                    "spelled=", "spoken="])
     except getopt.GetoptError:
         print('test.py -i <inputfile> ')
         sys.exit(2)
@@ -66,17 +75,17 @@ def main(argv):
             number = arg
         elif opt in ("-r", "--rule"):
             rule = arg
-        elif opt in ("-l", "--lemma"):
-            lemma = arg
+        elif opt in ("-o", "--root"):
+            root = arg
         elif opt in ("-s", "--spelled"):
             spelled = arg
         elif opt in ("-p", "--spoken"):
             spoken = arg
 
-    parse([inputfile, type1, type2, type3, 
-        type4, number, rule, lemma, spelled, spoken])
+    parse({'infile': inputfile, 'type1': type1, 'type2': type2, 'type3': type3,
+           'type4': type4, 'number': number, 'rule': rule, 'root': root,
+           'spelled': spelled, 'spoken': spoken})
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
-

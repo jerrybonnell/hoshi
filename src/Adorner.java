@@ -52,7 +52,17 @@ public class Adorner
   // the 9 possible attribbutes
   public static final String[] ATTRIBUTES = {
       "type1", "type2", "type3", "type4", "number", "rule",
-      "lemma", "spelled", "spoken" }; 
+      "root", "spelled", "spoken" }; 
+
+  // location of RELAX NG file 
+  public static final String XML_MODEL = 
+    "<?xml-model href=\"../../../../../Downloads/tei_pos.rnc\"" +
+    " type=\"application/relax-ng-compact-syntax\"?>";
+
+  // the prefix of the open tag
+  public static final String SPECIAL_OPEN_PREFIX = "<w ";
+  public static final String SPECIAL_OPEN_SUFFIX = ">";
+  public static final String SPECIAL_CLOSE = "</w>";
 
   // the prefix and suffix of the term tag 
   public static final String TERM_OPEN_PREFIX = "<term ";
@@ -62,11 +72,6 @@ public class Adorner
   public static final String GLOSS_CLOSE = "</gloss>"; 
   // the suffix of the open tag 
   public static final String OPEN_SUFFIX = ">";
-
-  // the prefix of the open tag
-  //public static final String SPECIAL_OPEN_PREFIX = "<ww ";
-  //public static final String SPECIAL_OPEN_SUFFIX = ">";
-  //public static final String SPECIAL_CLOSE = "</ww>";
 
   //////// INSTANCE VARIABLES ////////
   private Analyzer analyzer;          // Kuromoji tokenizer
@@ -176,49 +181,31 @@ public class Adorner
   }
 
   /**
-   * Generate a String representing the adornment
+   * Generate a String representing the adornment and print it
    * type1 = ..., type2 = ..., etc. 
    */
-  // private static String tokenAttribute( Token token )
-  // {
-  //   String[] list = token.getAllFeatures().split( "," );
-  //   String value = SPECIAL_OPEN_PREFIX;
-  //   for ( int i = 0; i < list.length; i ++ )
-  //   {
-  //     value += ATTRIBUTES[ i ] + "=\"" + list[ i ] + "\"";
-  //     value += ( i < list.length - 1 ) ? " " : SPECIAL_OPEN_SUFFIX;
-  //   }
-  //   return value;
-  // }
-
-  /**
-   * Generates the adornment for a token using a combination of 
-   * <term> and <gloss> tags in a "list" structure, and writes it to file 
-   * ex:  <term n=token> 
-   *         <gloss n="type1"> ... </gloss>
-   *         <gloss n="type2"> ... </gloss>
-   *         etc..
-   *      </term> 
-   *
-   * @param token the input to be adorned 
-   * @param features the array of attributes to adorn the input with 
-   * 
-   */
-  private void tokenAdorn (String token, String[] features) throws IOException
+  private void tokenAttribute( String token, String[] features,  
+      LinkedList<String> stack ) throws IOException
   {
-    System.out.println("adding term gloss tags to " + token); 
-    // generates a <term> tag
-    String termTag = TERM_OPEN_PREFIX + "n=\"" + token + "\"" + OPEN_SUFFIX; 
-    indentAndWrite(termTag);
-    // generates a <gloss> tag for each POS 
-    for ( int i = 0; i < features.length; i ++ ) 
+    System.out.println("adding w tags to " + token); 
+    String value = (!stack.isEmpty() 
+      && stack.getFirst().equals("w")) ? " " : SPECIAL_OPEN_PREFIX;
+    for ( int i = 0; i < features.length; i ++ )
     {
-      String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-          + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + features[i] + GLOSS_CLOSE; 
-      indentAndWrite(glossTag);
+      value += ATTRIBUTES[ i ] + "=\"" + features[ i ] + "\"";
+      value += ( i < features.length - 1 ) ? " " : SPECIAL_OPEN_SUFFIX;
     }
-
-    indentAndWrite( TERM_CLOSE );
+    
+    if (!stack.isEmpty() && stack.getFirst().equals("w")) {
+      writer.append( value + "\n" );
+      depth--; 
+      indentAndWrite(token);
+      depth++;
+    } else {
+      indentAndWrite(value);
+      indentAndWrite(token);
+      indentAndWrite( SPECIAL_CLOSE );
+    }
   }
 
   /**
@@ -236,25 +223,30 @@ public class Adorner
    * @param original the original word before segmentation
    * 
    */
-  private void tokenAdorn (String token, String[] features, String original) 
-    throws IOException
+  private void tokenAttribute (String token, String[] features, 
+    LinkedList<String> stack, String original) throws IOException
   {
-    System.out.println("add SPECIAL term gloss tags to " + token); 
-    // generates a <term> tag
-    String termTag = TERM_OPEN_PREFIX + "n=\"" + token + "\"" + OPEN_SUFFIX; 
-    indentAndWrite(termTag);
-    String glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-          + "token"+ "\"" + OPEN_SUFFIX + original + GLOSS_CLOSE; 
-    indentAndWrite(glossTag);
-    // generates a <gloss> tag for each POS 
-    for ( int i = 0; i < features.length; i ++ ) 
+    System.out.println("add SPECIAL w tag to " + token); 
+
+    String value = (!stack.isEmpty() && 
+      stack.getFirst().equals("w")) ? " " : SPECIAL_OPEN_PREFIX;
+    value += "token"+ "=\"" + original + "\" ";
+    for ( int i = 0; i < features.length; i ++ )
     {
-      glossTag = INDENT + GLOSS_OPEN_PREFIX + "n=\"" 
-          + ATTRIBUTES[i] + "\"" + OPEN_SUFFIX + features[i] + GLOSS_CLOSE; 
-      indentAndWrite(glossTag);
+      value += ATTRIBUTES[ i ] + "=\"" + features[ i ] + "\"";
+      value += ( i < features.length - 1 ) ? " " : SPECIAL_OPEN_SUFFIX;
     }
 
-    indentAndWrite( TERM_CLOSE );
+    if (!stack.isEmpty() && stack.getFirst().equals("w")) {
+      writer.append( value + "\n" );
+      depth--; 
+      indentAndWrite(token);
+      depth++;
+    } else {
+      indentAndWrite(value);
+      indentAndWrite(token);
+      indentAndWrite( SPECIAL_CLOSE );
+    }
   }
 
   /**
@@ -275,6 +267,36 @@ public class Adorner
       depth --;
     }
     indentAndWrite( block.getInput() );
+    if ( block.getTagType() == Block.OPEN )
+    {
+      depth ++;
+    }
+  }
+
+  /**
+   * print a block in the output stream
+   * @param block the block
+   *
+   * presently, only presentBlock is used as the actual;
+   * parameter
+   */
+  private void simpleBlockWrite( Block block, boolean isW) throws IOException
+  {
+    /* if the block is a close tag, decrease the depth by 1
+     * indent, and then print the block
+     * if the block is an open increase the depth by 1
+     */
+    if ( block.getTagType() == Block.CLOSE )
+    {
+      depth --;
+    }
+    if (isW) {
+      String a = block.getInput().substring(0, block.getInput().length() - 1);
+      indent();
+      writer.append( a );
+    } else {
+      indentAndWrite( block.getInput() );
+    }
     if ( block.getTagType() == Block.OPEN )
     {
       depth ++;
@@ -412,7 +434,13 @@ public class Adorner
 
       if ( !blockUse.get( bPos ) ) // not doing the definition mode 
       {
-        simpleBlockWrite( blockList.get( bPos ) );
+        if (!linkedTags.isEmpty() && linkedTags.getFirst().equals("w")) {
+          simpleBlockWrite( blockList.get( bPos ), true);
+        } else {
+          simpleBlockWrite( blockList.get( bPos ) );
+        }
+        
+
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
         if (
@@ -483,7 +511,7 @@ public class Adorner
             // print out the explanation for word 
             String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-            tokenAdorn(word, features);
+            tokenAttribute(word, features, linkedTags);
             piece = piece.substring(word.length(), piece.length()); 
             if (piece.length() == 0) {
               System.out.println("breaking now"); 
@@ -506,7 +534,7 @@ public class Adorner
           if (piece.length() > 0) {
             String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-            tokenAdorn(piece, features, word);
+            tokenAttribute(piece, features, linkedTags, word);
           }
           i++; 
           bPos++; // we don't want to print the first part (に) again 
@@ -561,7 +589,7 @@ public class Adorner
             // print out the explanation for word 
             String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-            tokenAdorn(word, features);
+            tokenAttribute(word, features, linkedTags);
             piece = piece.substring(word.length(), piece.length()); 
             if (piece.length() == 0) {
               System.out.println("breaking now"); 
@@ -577,7 +605,7 @@ public class Adorner
           if (piece.length() > 0) {
             String [] features = analyzer.getAllFeatures(
               expanResult[i]).split(",");
-            tokenAdorn(piece, features, word);
+            tokenAttribute(piece, features, linkedTags, word);
           }
           bPos++; 
           i++;
@@ -656,12 +684,14 @@ public class Adorner
               // in the case of small-split.xml 
               bPos + 1 < blockList.size() &&!blockList.get(bPos + 1).isNonTag())
             {
-              tokenAdorn(inp, 
-                analyzer.getAllFeatures(result[ tPos ]).split(","), kuro);
+              tokenAttribute(inp, 
+                analyzer.getAllFeatures(result[ tPos ]).split(","), 
+                linkedTags, kuro);
             } else 
             {
-              tokenAdorn(inp, 
-                analyzer.getAllFeatures(result[ tPos ]).split(","));
+              tokenAttribute(inp, 
+                analyzer.getAllFeatures(result[ tPos ]).split(","), 
+                linkedTags);
             }
              
           }
@@ -772,18 +802,26 @@ public class Adorner
    */
   public void process() throws IOException
   {
+    boolean addedSchema = false; 
     // skip until <text> is encountered
     while ( iter.hasNext() )
     {
       presentBlock = iter.next();
-      ///// System.out.println( presentBlock );
       if ( presentBlock.isOpen() &&
            presentBlock.getTagName().equals( "text" ) )
       {
         break;
       }
       // moved here due to apperance of a duplicate <text> tag  
-      simpleBlockWrite( presentBlock ); 
+      if ( presentBlock.isHeader() && !addedSchema && 
+           presentBlock.getTagName().equals( "xml-model" ) )
+      {
+        // write the appropriate xml model for our schema
+        simpleBlockWrite(new Block( XML_MODEL ) );
+        addedSchema = true;
+      } else if (!presentBlock.getTagName().equals( "xml-model" ) ) {
+        simpleBlockWrite( presentBlock ); 
+      }
     }
 
     System.out.println( "---------------START---------------" );
