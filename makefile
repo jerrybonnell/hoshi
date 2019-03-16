@@ -15,9 +15,9 @@ KURO = jar/kuromoji-0.7.7.jar
 MECAB = jar/MeCab.jar
 
 # name of input file 
-INPUT_FILE = data/small.xml
+INPUT_FILE = data/small-split4.xml
 #INPUT_FILE = data/small.xml
-#INPUT_FILE = dazai_said.xml
+#INPUT_FILE = data/dazai_said.xml
 # name of output file 
 OUTPUT_FILE = out/test-stack.xml
 
@@ -41,6 +41,7 @@ TEST_CORR_1 = data/small-corr1.xml
 TEST_NESTED_1 = data/small-nested1.xml
 TEST_EX_1 = data/small-ex1.xml
 TEST_SPLIT_1 = data/small-split.xml
+TEST_SPLIT_2 = data/small-split2.xml
 
 SOL_ORIG_FILE = solution/dazai-sol.xml
 SOL_TEST_REG_1 = solution/small-reg1-sol.xml
@@ -62,6 +63,7 @@ SOL_TEST_CORR_1 = solution/small-corr1-sol.xml
 SOL_TEST_NESTED_1 = solution/small-nested1-sol.xml
 SOL_TEST_EX_1 = solution/small-ex1-sol.xml
 SOL_TEST_SPLIT_1 = solution/small-split-sol.xml
+SOL_TEST_SPLIT_2 = solution/small-split2-sol.xml
 
 JCC = javac -cp "$(KURO):./"  -encoding UTF-8
 
@@ -215,6 +217,9 @@ test-all:
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_SPLIT_1) --output $(OUTPUT_FILE) > /dev/null
 	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_1)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_SPLIT_2) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_2)
 
 cp-all: 
 	make compile

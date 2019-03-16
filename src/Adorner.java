@@ -461,6 +461,17 @@ public class Adorner
           System.out.println("in the if");
           // first <expan> we seen so far 
           piece = blockList.get(bPos + 1).getTagName();
+          // // update piece in case of new lines
+          while (bPos + 2 < blockList.size() 
+                 && blockList.get(bPos + 2).isNonTag()) {
+            // if blockList.get(bPos + counter) is a nontag, then it is a text
+            // and should be incorporated into piece; this is the situation,
+            // as in small-split2 
+            String nextLine = blockList.get(bPos + 2).getTagName();
+            piece += nextLine; 
+            bPos++;  
+          }
+
           if (residual.length() > 0) {
             System.out.println("residual > 0 true");
             if (piece.length() < residual.length()) {
@@ -540,11 +551,22 @@ public class Adorner
           bPos++; // we don't want to print the first part (に) again 
         } else if (
             (!linkedTags.isEmpty() && (linkedTags.getFirst().equals("ex"))) 
-            //|| (!linkedTags.isEmpty() && linkedTags.getFirst().equals("corr"))
           ) 
         {
+          boolean changed = false; 
           String chars = blockList.get(bPos + 1).getTagName(); 
-          piece = piece + chars; 
+          piece = piece + chars;
+          // // update piece in case of new lines
+          while (bPos + 2 < blockList.size() 
+                 && blockList.get(bPos + 2).isNonTag()) {
+            // if blockList.get(bPos + counter) is a nontag, then it is a text
+            // and should be incorporated into piece; this is the situation,
+            // as in small-split2 
+            String nextLine = blockList.get(bPos + 2).getTagName();
+            piece += nextLine; 
+            bPos++;
+            changed = true;   
+          } 
           System.out.println("ex word [" + word + "]"); 
           System.out.println("ex piece [" + piece + "]"); 
           if (word.indexOf(piece) == 0) {
@@ -557,13 +579,17 @@ public class Adorner
           System.out.println("ex residual updated [" + residual + "]"); 
           System.out.println("simpleBlockWrite : [ "
             + blockList.get( bPos + 1 ) + " ]");
-          simpleBlockWrite( blockList.get( bPos + 1 ) );
+          if (changed) {
+            simpleBlockWrite( new Block( piece ) );
+          } else {
+            simpleBlockWrite( blockList.get(bPos + 1) );
+          }
           bPos++; 
         } else if (
           !linkedTags.isEmpty() && linkedTags.getFirst().equals("corr")  
           && linkedTags.contains("expan") && blockList.get(bPos + 1).isNonTag()
           ) 
-        {
+        { 
           String chars = blockList.get(bPos + 1).getTagName(); 
           //piece = piece + chars; 
           System.out.println("corr word [" + word + "]"); 
@@ -574,6 +600,16 @@ public class Adorner
             simpleBlockWrite(new Block(residual)); 
           }
           piece = chars;
+          // // update piece in case of new lines
+          while (bPos + 2 < blockList.size() 
+                 && blockList.get(bPos + 2).isNonTag()) {
+            // if blockList.get(bPos + counter) is a nontag, then it is a text
+            // and should be incorporated into piece; this is the situation,
+            // as in small-split2 
+            String nextLine = blockList.get(bPos + 2).getTagName();
+            piece += nextLine; 
+            bPos++;
+          } 
           if (piece.indexOf(residual) == 0) {
             piece = piece.substring(residual.length(), piece.length());
           }
@@ -772,7 +808,6 @@ public class Adorner
     String comp = "";
     // not equal to expan is important because otherwise kuromoji will eat 
     // those characters 
-    // TODO
     if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
         && tagStack.contains("expan")) 
     {

@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="tei_all_ruby_20170322_4.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>
+                    走れメロス
+                </title>
+                <author>
+                    太宰治
+                </author>
+            </titleStmt>
+            <publicationStmt>
+                <distributor>
+                    青空文庫
+                </distributor>
+                <authority>
+                    金川一之
+                </authority>
+                <authority>
+                    高橋美奈子
+                </authority>
+                <date when="2011-01-17">
+                     2011年1月17日
+                </date>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl>
+                    <author>
+                        太宰治
+                    </author>
+                    <title>
+                        走れメロス
+                    </title>
+                    <publisher>
+                        筑摩書房
+                    </publisher>
+                    「太宰治全集3」ちくま文庫、 
+                    <date when="1988-10-25" >
+                        1988（昭和63）年10月25日
+                    </date>
+                    初版発行 
+                    <date when="1998-06-15" >
+                        1998（平成10）年6月15日
+                    </date>
+                    第2刷 
+                </bibl>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <list>
+                <item>
+                    <date when="2011-01-17">
+                        2011年1月17日
+                    </date>
+                    修正 
+                </item>
+                <item>
+                     入力金川一之 校正高橋美奈子
+                    <date when="2000-12-04">
+                         2000年12月4日
+                    </date>
+                    作成 
+                </item>
+            </list>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <p>
+                <term n="メロス">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">一般</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">*</gloss>
+                </term>
+                <term n="は">
+                    <gloss n="type1">助詞</gloss>
+                    <gloss n="type2">係助詞</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">は</gloss>
+                    <gloss n="spelled">ハ</gloss>
+                    <gloss n="spoken">ワ</gloss>
+                </term>
+                <choice>
+                    <sic>
+                        激
+                    </sic>
+                    <corr>
+                        <term n="激怒">
+                            <gloss n="type1">名詞</gloss>
+                            <gloss n="type2">サ変接続</gloss>
+                            <gloss n="type3">*</gloss>
+                            <gloss n="type4">*</gloss>
+                            <gloss n="number">*</gloss>
+                            <gloss n="rule">*</gloss>
+                            <gloss n="lemma">激怒</gloss>
+                            <gloss n="spelled">ゲキド</gloss>
+                            <gloss n="spoken">ゲキド</gloss>
+                        </term>
+                    </corr>
+                </choice>
+                <term n="し">
+                    <gloss n="type1">動詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">サ変・スル</gloss>
+                    <gloss n="rule">連用形</gloss>
+                    <gloss n="lemma">する</gloss>
+                    <gloss n="spelled">シ</gloss>
+                    <gloss n="spoken">シ</gloss>
+                </term>
+                <term n="た">
+                    <gloss n="type1">助動詞</gloss>
+                    <gloss n="type2">*</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">特殊・タ</gloss>
+                    <gloss n="rule">基本形</gloss>
+                    <gloss n="lemma">た</gloss>
+                    <gloss n="spelled">タ</gloss>
+                    <gloss n="spoken">タ</gloss>
+                </term>
+                <term n="。">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">句点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">。</gloss>
+                    <gloss n="spelled">。</gloss>
+                    <gloss n="spoken">。</gloss>
+                </term>
+                <term n="メロス">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">一般</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">*</gloss>
+                </term>
+                <term n="は">
+                    <gloss n="type1">助詞</gloss>
+                    <gloss n="type2">係助詞</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">は</gloss>
+                    <gloss n="spelled">ハ</gloss>
+                    <gloss n="spoken">ワ</gloss>
+                </term>
+                <term n="激怒">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">サ変接続</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">激怒</gloss>
+                    <gloss n="spelled">ゲキド</gloss>
+                    <gloss n="spoken">ゲキド</gloss>
+                </term>
+                <choice>
+                    <sic>
+                        激
+                    </sic>
+                    <corr>
+                    </corr>
+                </choice>
+                <term n="し">
+                    <gloss n="type1">動詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">サ変・スル</gloss>
+                    <gloss n="rule">連用形</gloss>
+                    <gloss n="lemma">する</gloss>
+                    <gloss n="spelled">シ</gloss>
+                    <gloss n="spoken">シ</gloss>
+                </term>
+                <term n="た">
+                    <gloss n="type1">助動詞</gloss>
+                    <gloss n="type2">*</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">特殊・タ</gloss>
+                    <gloss n="rule">基本形</gloss>
+                    <gloss n="lemma">た</gloss>
+                    <gloss n="spelled">タ</gloss>
+                    <gloss n="spoken">タ</gloss>
+                </term>
+                <term n="。">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">句点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">。</gloss>
+                    <gloss n="spelled">。</gloss>
+                    <gloss n="spoken">。</gloss>
+                </term>
+                <term n="勇者">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">一般</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">勇者</gloss>
+                    <gloss n="spelled">ユウシャ</gloss>
+                    <gloss n="spoken">ユーシャ</gloss>
+                </term>
+                <choice>
+                    <orig>
+                        者が
+                    </orig>
+                    <reg>
+                        <term n="は">
+                            <gloss n="type1">助詞</gloss>
+                            <gloss n="type2">係助詞</gloss>
+                            <gloss n="type3">*</gloss>
+                            <gloss n="type4">*</gloss>
+                            <gloss n="number">*</gloss>
+                            <gloss n="rule">*</gloss>
+                            <gloss n="lemma">は</gloss>
+                            <gloss n="spelled">ハ</gloss>
+                            <gloss n="spoken">ワ</gloss>
+                        </term>
+                    </reg>
+                </choice>
+                <term n="、">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">読点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">、</gloss>
+                    <gloss n="spelled">、</gloss>
+                    <gloss n="spoken">、</gloss>
+                </term>
+                <term n="ひどく">
+                    <gloss n="type1">形容詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">形容詞・アウオ段</gloss>
+                    <gloss n="rule">連用テ接続</gloss>
+                    <gloss n="lemma">ひどい</gloss>
+                    <gloss n="spelled">ヒドク</gloss>
+                    <gloss n="spoken">ヒドク</gloss>
+                </term>
+                <term n="赤面">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">サ変接続</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">赤面</gloss>
+                    <gloss n="spelled">セキメン</gloss>
+                    <gloss n="spoken">セキメン</gloss>
+                </term>
+                <term n="し">
+                    <gloss n="type1">動詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">サ変・スル</gloss>
+                    <gloss n="rule">連用形</gloss>
+                    <gloss n="lemma">する</gloss>
+                    <gloss n="spelled">シ</gloss>
+                    <gloss n="spoken">シ</gloss>
+                </term>
+                <term n="た">
+                    <gloss n="type1">助動詞</gloss>
+                    <gloss n="type2">*</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">特殊・タ</gloss>
+                    <gloss n="rule">基本形</gloss>
+                    <gloss n="lemma">た</gloss>
+                    <gloss n="spelled">タ</gloss>
+                    <gloss n="spoken">タ</gloss>
+                </term>
+                <term n="。">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">句点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">。</gloss>
+                    <gloss n="spelled">。</gloss>
+                    <gloss n="spoken">。</gloss>
+                </term>
+                <term n="勇者">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">一般</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">勇者</gloss>
+                    <gloss n="spelled">ユウシャ</gloss>
+                    <gloss n="spoken">ユーシャ</gloss>
+                </term>
+                <choice>
+                    <orig>
+                        者が
+                    </orig>
+                    <reg>
+                        <term n="は">
+                            <gloss n="type1">助詞</gloss>
+                            <gloss n="type2">係助詞</gloss>
+                            <gloss n="type3">*</gloss>
+                            <gloss n="type4">*</gloss>
+                            <gloss n="number">*</gloss>
+                            <gloss n="rule">*</gloss>
+                            <gloss n="lemma">は</gloss>
+                            <gloss n="spelled">ハ</gloss>
+                            <gloss n="spoken">ワ</gloss>
+                        </term>
+                    </reg>
+                </choice>
+                <term n="、">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">読点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">、</gloss>
+                    <gloss n="spelled">、</gloss>
+                    <gloss n="spoken">、</gloss>
+                </term>
+                <term n="ひどく">
+                    <gloss n="type1">形容詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">形容詞・アウオ段</gloss>
+                    <gloss n="rule">連用テ接続</gloss>
+                    <gloss n="lemma">ひどい</gloss>
+                    <gloss n="spelled">ヒドク</gloss>
+                    <gloss n="spoken">ヒドク</gloss>
+                </term>
+                <term n="赤面">
+                    <gloss n="type1">名詞</gloss>
+                    <gloss n="type2">サ変接続</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">赤面</gloss>
+                    <gloss n="spelled">セキメン</gloss>
+                    <gloss n="spoken">セキメン</gloss>
+                </term>
+                <term n="し">
+                    <gloss n="type1">動詞</gloss>
+                    <gloss n="type2">自立</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">サ変・スル</gloss>
+                    <gloss n="rule">連用形</gloss>
+                    <gloss n="lemma">する</gloss>
+                    <gloss n="spelled">シ</gloss>
+                    <gloss n="spoken">シ</gloss>
+                </term>
+                <term n="た">
+                    <gloss n="type1">助動詞</gloss>
+                    <gloss n="type2">*</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">特殊・タ</gloss>
+                    <gloss n="rule">基本形</gloss>
+                    <gloss n="lemma">た</gloss>
+                    <gloss n="spelled">タ</gloss>
+                    <gloss n="spoken">タ</gloss>
+                </term>
+                <term n="。">
+                    <gloss n="type1">記号</gloss>
+                    <gloss n="type2">句点</gloss>
+                    <gloss n="type3">*</gloss>
+                    <gloss n="type4">*</gloss>
+                    <gloss n="number">*</gloss>
+                    <gloss n="rule">*</gloss>
+                    <gloss n="lemma">。</gloss>
+                    <gloss n="spelled">。</gloss>
+                    <gloss n="spoken">。</gloss>
+                </term>
+            </p>
+        </body>
+    </text>
+    <!--<[\/]?persName[^>]*>[^<]+-->
+</TEI>

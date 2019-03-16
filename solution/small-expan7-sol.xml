@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../../../../../Downloads/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>
+                    走れメロス
+                </title>
+                <author>
+                    太宰治
+                </author>
+            </titleStmt>
+            <publicationStmt>
+                <distributor>
+                    青空文庫
+                </distributor>
+                <authority>
+                    金川一之
+                </authority>
+                <authority>
+                    高橋美奈子
+                </authority>
+                <date when="2011-01-17">
+                     2011年1月17日
+                </date>
+            </publicationStmt>
+            <sourceDesc>
+                <bibl>
+                    <author>
+                        太宰治
+                    </author>
+                    <title>
+                        走れメロス
+                    </title>
+                    <publisher>
+                        筑摩書房
+                    </publisher>
+                    「太宰治全集3」ちくま文庫、 
+                    <date when="1988-10-25" >
+                        1988（昭和63）年10月25日
+                    </date>
+                    初版発行 
+                    <date when="1998-06-15" >
+                        1998（平成10）年6月15日
+                    </date>
+                    第2刷 
+                </bibl>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <list>
+                <item>
+                    <date when="2011-01-17">
+                        2011年1月17日
+                    </date>
+                    修正 
+                </item>
+                <item>
+                     入力金川一之 校正高橋美奈子
+                    <date when="2000-12-04">
+                         2000年12月4日
+                    </date>
+                    作成 
+                </item>
+            </list>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <p>
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                メロス
+                </w>
+                <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
+                は
+                </w>
+                <choice>
+                    <abbr>
+                         デパートのパソコン　
+                    </abbr>
+                    <expan>
+                        <w token="デパートメントストアブランド" type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                        デパ
+                        </w>
+                        <ex>
+                            ート
+                        </ex>
+                        メントス
+                        <ex>
+                            ト
+                        </ex>
+                        ア
+                        <ex>
+                            ブラ
+                        </ex>
+                        ンド
+                        <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
+                        の
+                        </w>
+                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="パーソナル" spelled="パーソナル" spoken="パーソナル">
+                        パーソナル
+                        </w>
+                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="コンピューター" spelled="コンピューター" spoken="コンピューター">
+                        コンピューター
+                        </w>
+                    </expan>
+                </choice>
+                <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="を" spelled="ヲ" spoken="ヲ">
+                を
+                </w>
+                <w type1="動詞" type2="自立" type3="*" type4="*" number="五段・ワ行促音便" rule="連用形" root="買う" spelled="カイ" spoken="カイ">
+                買い
+                </w>
+                <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・マス" rule="連用形" root="ます" spelled="マシ" spoken="マシ">
+                まし
+                </w>
+                <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・タ" rule="基本形" root="た" spelled="タ" spoken="タ">
+                た
+                </w>
+                <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
+                。
+                </w>
+            </p>
+        </body>
+    </text>
+    <!--<[\/]?persName[^>]*>[^<]+-->
+</TEI>
