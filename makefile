@@ -42,6 +42,7 @@ TEST_NESTED_1 = data/small-nested1.xml
 TEST_EX_1 = data/small-ex1.xml
 TEST_SPLIT_1 = data/small-split.xml
 TEST_SPLIT_2 = data/small-split2.xml
+TEST_SPLIT_3 = data/small-split3.xml
 
 SOL_ORIG_FILE = solution/dazai-sol.xml
 SOL_TEST_REG_1 = solution/small-reg1-sol.xml
@@ -64,6 +65,7 @@ SOL_TEST_NESTED_1 = solution/small-nested1-sol.xml
 SOL_TEST_EX_1 = solution/small-ex1-sol.xml
 SOL_TEST_SPLIT_1 = solution/small-split-sol.xml
 SOL_TEST_SPLIT_2 = solution/small-split2-sol.xml
+SOL_TEST_SPLIT_3 = solution/small-split3-sol.xml
 
 JCC = javac -cp "$(KURO):./"  -encoding UTF-8
 
@@ -220,6 +222,9 @@ test-all:
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_SPLIT_2) --output $(OUTPUT_FILE) > /dev/null
 	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_2)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_SPLIT_3) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_3)
 
 cp-all: 
 	make compile
@@ -286,6 +291,12 @@ cp-all:
 	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
 		--input $(TEST_SPLIT_1) --output $(OUTPUT_FILE) > /dev/null
 	cp $(OUTPUT_FILE) $(SOL_TEST_SPLIT_1)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_SPLIT_2) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_2)
+	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji \
+		--input $(TEST_SPLIT_3) --output $(OUTPUT_FILE) > /dev/null
+	diff $(OUTPUT_FILE) $(SOL_TEST_SPLIT_3)
 
 
 clean: 

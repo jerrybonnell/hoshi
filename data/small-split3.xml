@@ -35,30 +35,38 @@
       <text>
             <body>
                   <p>
-                        流れは
-                        いよいよ
+                        <choice> 
+                              <abbr>ignore</abbr>
+                              <expan>
+                                    メ<ex>ロ</ex>スは
+                              </expan>
+                        </choice>
                         <choice>
                               <abbr>ignore</abbr>
                               <expan>
-                                    メ
-                                    ロ
-                                    スは
-                                    激
+                                    メロスは激
                                     <choice>
                                           <sic> ignore </sic>
                                           <corr>
-                                               怒した<expan>コ
-                                               ンピュー
-                                               ター</expan>
+                                               怒
+                                               し
+                                               た<expan>
+                                               コ
+                                               <ex>
+                                                ン
+                                          </ex>
+                                          ピ
+                                               ュ
+                                               ー
+                                               タ
+                                               ー
+                                         </expan>
                                           </corr>
                                     </choice>
-                              に
-                              なってい
-                              る
+                              になっている
                               </expan>
                         </choice>   
-                        し
-                        た。
+                        した。
                   </p>
             </body>
       </text>
