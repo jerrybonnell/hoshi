@@ -11,13 +11,15 @@
 #
 
 # location of the kuromoji jar file 
-KURO = jar/kuromoji-0.7.7.jar
+KURO = jar/kuromoji-ipadic-0.9.0.jar
+KURO_CORE = jar/kuromoji-core-0.9.0.jar
+#KURO = jar/kuromoji-0.7.7.jar
 MECAB = jar/MeCab.jar
 
 # name of input file 
-INPUT_FILE = data/small-split4.xml
-#INPUT_FILE = data/small.xml
-#INPUT_FILE = data/dazai_said.xml
+#INPUT_FILE = data/small-expan9.xml
+INPUT_FILE = data/dazai_said.xml
+#INPUT_FILE = data/small-mecab.xml
 # name of output file 
 OUTPUT_FILE = out/test-stack.xml
 
@@ -145,10 +147,10 @@ compile:
 	#$(CXX) -O3 -c -fpic wrappers/$(TARGET)_wrap.cxx $(INC)
 	#$(CXX) $(LIB_TYPE) $(TARGET)_wrap.o -o \
 	#	lib$(TARGET).$(LIB_EXT) $(LIBS)
-	javac -cp $(KURO):$(MECAB) src/*.java
+	javac -cp $(KURO_CORE):$(KURO):$(MECAB) src/*.java
 
 run: 
-	java -cp "$(KURO):$(MECAB):./" src/Main --analyze Kuromoji --input $(INPUT_FILE) --output $(OUTPUT_FILE)
+	java -cp "$(KURO_CORE):$(KURO):$(MECAB):./" src/Main --analyze Mecab --input $(INPUT_FILE) --output $(OUTPUT_FILE)
 
 test:
 	make compile

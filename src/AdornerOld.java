@@ -17,9 +17,9 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.atilika.kuromoji.Token;
-import org.atilika.kuromoji.Tokenizer;
-import org.atilika.kuromoji.Tokenizer.Mode;
+//import org.atilika.kuromoji.Token;
+//import org.atilika.kuromoji.Tokenizer;
+//import org.atilika.kuromoji.Tokenizer.Mode;
 
 /**
  * The class for adorning a Japanese xml file using Kuromoji

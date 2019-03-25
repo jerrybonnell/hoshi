@@ -40,9 +40,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
 
-import org.atilika.kuromoji.Token;
-import org.atilika.kuromoji.Tokenizer;
-import org.atilika.kuromoji.Tokenizer.Mode;
+//import org.atilika.kuromoji.Token;
+//import org.atilika.kuromoji.Tokenizer;
+//import org.atilika.kuromoji.Tokenizer.Mode;
 
 import org.chasen.mecab.MeCab;
 import org.chasen.mecab.Tagger;

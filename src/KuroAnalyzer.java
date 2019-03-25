@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-import org.atilika.kuromoji.Token;
-import org.atilika.kuromoji.Tokenizer;
-import org.atilika.kuromoji.Tokenizer.Mode;
+import com.atilika.kuromoji.ipadic.Token;
+import com.atilika.kuromoji.ipadic.Tokenizer;
+//import com.atilika.kuromoji.Tokenizer.Mode;
 
 public class KuroAnalyzer extends MecabAnalyzer {
 
@@ -16,18 +16,20 @@ public class KuroAnalyzer extends MecabAnalyzer {
 
 	public KuroAnalyzer(String modeName, String dictName) throws IOException {
 
-		if ( modeName != null && dictName != null ) {
-			Mode mode = Mode.valueOf( modeName.toUpperCase() );
-			tokenizer = Tokenizer.builder()
-	          .mode( mode ).userDictionary( dictName ).build();
-    	}
-   		else if ( modeName != null && dictName == null ) {
-    		Mode mode = Mode.valueOf( modeName.toUpperCase() );
-    		tokenizer = Tokenizer.builder().mode( mode ).build();
-    	}
-    	else {
-      		tokenizer = Tokenizer.builder().build();
-      	}
+		tokenizer = new Tokenizer() ;
+
+		// if ( modeName != null && dictName != null ) {
+		// 	Mode mode = Mode.valueOf( modeName.toUpperCase() );
+		// 	tokenizer = Tokenizer.builder()
+	 //          .mode( mode ).userDictionary( dictName ).build();
+  //   	}
+  //  		else if ( modeName != null && dictName == null ) {
+  //   		Mode mode = Mode.valueOf( modeName.toUpperCase() );
+  //   		tokenizer = Tokenizer.builder().mode( mode ).build();
+  //   	}
+  //   	else {
+  //     		tokenizer = Tokenizer.builder().build();
+  //     	}
 
 	}
 
@@ -37,7 +39,7 @@ public class KuroAnalyzer extends MecabAnalyzer {
 		String[] out = new String[result.size()];
 		int i = 0; 
 		for ( Token token : result ) {
-			out[i] = token.getSurfaceForm() + "\t" + token.getAllFeatures();
+			out[i] = token.getSurface() + "\t" + token.getAllFeatures();
 			i++; 
   		}
   		return out; 

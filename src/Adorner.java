@@ -19,9 +19,9 @@ import java.util.Iterator;
 import java.util.Stack; 
 import java.util.LinkedList; 
 
-import org.atilika.kuromoji.Token;
-import org.atilika.kuromoji.Tokenizer;
-import org.atilika.kuromoji.Tokenizer.Mode;
+//import org.atilika.kuromoji.Token;
+//import org.atilika.kuromoji.Tokenizer;
+//import org.atilika.kuromoji.Tokenizer.Mode;
 
 /**
  * The class for adorning a Japanese xml file using Kuromoji
@@ -56,7 +56,8 @@ public class Adorner
 
   // location of RELAX NG file 
   public static final String XML_MODEL = 
-    "<?xml-model href=\"../../../../../Downloads/tei_pos.rnc\"" +
+    "<?xml-model href=\"/Users/jerrybonnell/Google Drive/grad/tei/kuro/"
+    + "schema/tei_pos.rnc\"" +
     " type=\"application/relax-ng-compact-syntax\"?>";
 
   // the prefix of the open tag
