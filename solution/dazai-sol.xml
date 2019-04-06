@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../../../../Downloads/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="/Users/jerrybonnell/Google Drive/grad/tei/kuro/schema/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
     <teiHeader>
         <fileDesc>
@@ -69,7 +69,7 @@
     <text>
         <body>
             <p>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -141,7 +141,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
@@ -165,7 +165,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -275,7 +275,7 @@
                 <w type1="名詞" type2="副詞可能" type3="*" type4="*" number="*" rule="*" root="未明" spelled="ミメイ" spoken="ミメイ">
                 未明
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -326,14 +326,14 @@
                 <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・タ" rule="基本形" root="た" spelled="タ" spoken="タ">
                 た
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 此
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
                 の
                 </w>
                 <placeName>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     シラクス
                     </w>
                 </placeName>
@@ -355,7 +355,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
@@ -544,7 +544,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -675,7 +675,7 @@
                 </w>
             </p>
             <p>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
@@ -705,7 +705,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・ダ" rule="連用形" root="だ" spelled="デ" spoken="デ">
@@ -723,14 +723,14 @@
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
                 は
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 此
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
                 の
                 </w>
                 <placeName>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     シラクス
                     </w>
                 </placeName>
@@ -873,7 +873,7 @@
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
                 に
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -1035,7 +1035,7 @@
                 <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・ダ" rule="体言接続" root="だ" spelled="ナ" spoken="ナ">
                 な
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="も" spelled="モ" spoken="モ">
@@ -1116,7 +1116,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                  
                 </w>
                 <w type1="名詞" type2="数" type3="*" type4="*" number="*" rule="*" root="二" spelled="ニ" spoken="ニ">
@@ -1131,7 +1131,7 @@
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
                 に
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 此
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -1341,7 +1341,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -1742,7 +1742,7 @@
                     <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
                     の
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     アレキス
                     </w>
                     <w type1="名詞" type2="接尾" type3="人名" type4="*" number="*" rule="*" root="様" spelled="サマ" spoken="サマ">
@@ -1848,7 +1848,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                      
                     </w>
                     <w type1="助詞" type2="格助詞" type3="連語" type4="*" number="*" rule="*" root="という" spelled="トイウ" spoken="トユウ">
@@ -2062,7 +2062,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -2120,7 +2120,7 @@
                 </said>
             </p>
             <p>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -2129,7 +2129,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                  
                 </w>
                 <w type1="名詞" type2="形容動詞語幹" type3="*" type4="*" number="*" rule="*" root="単純" spelled="タンジュン" spoken="タンジュン">
@@ -2225,10 +2225,10 @@
                 の
                 </w>
                 <roleName>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     警
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     吏
                     </w>
                 </roleName>
@@ -2262,7 +2262,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -2325,7 +2325,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -2411,7 +2411,7 @@
                 <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="暴君" spelled="ボウクン" spoken="ボークン">
                 暴君
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 ディオニス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -2548,7 +2548,7 @@
                 <w type1="助詞" type2="格助詞" type3="引用" type4="*" number="*" rule="*" root="と" spelled="ト" spoken="ト">
                 と
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -2647,7 +2647,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                      
                     </w>
                     <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="わし" spelled="ワシ" spoken="ワシ">
@@ -2695,7 +2695,7 @@
                 <w type1="助詞" type2="格助詞" type3="引用" type4="*" number="*" rule="*" root="と" spelled="ト" spoken="ト">
                 と
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -3114,7 +3114,7 @@
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
                 は
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="が" spelled="ガ" spoken="ガ">
@@ -3192,7 +3192,7 @@
                     <w type1="接頭詞" type2="数接続" type3="*" type4="*" number="*" rule="*" root="下" spelled="シモ" spoken="シモ">
                     下
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     賤
                     </w>
                     <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -3409,7 +3409,7 @@
                     <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
                     は
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     悧
                     </w>
                     <w type1="名詞" type2="固有名詞" type3="人名" type4="名" number="*" rule="*" root="巧" spelled="タクミ" spoken="タクミ">
@@ -3496,7 +3496,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="名詞" type2="サ変接続" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="サ変接続" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     ――」
                     </w>
                 </said>
@@ -3515,7 +3515,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -3900,7 +3900,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -4057,7 +4057,7 @@
                     <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
                     に
                     </w>
-                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     セリヌンティウス
                     </w>
                     <w type1="助詞" type2="格助詞" type3="連語" type4="*" number="*" rule="*" root="という" spelled="トイウ" spoken="トユウ">
@@ -4874,7 +4874,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -4933,7 +4933,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -4971,7 +4971,7 @@
                 <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="暴君" spelled="ボウクン" spoken="ボークン">
                 暴君
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 ディオニス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -5031,7 +5031,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5067,7 +5067,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5085,7 +5085,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="を" spelled="ヲ" spoken="ヲ">
@@ -5136,7 +5136,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5160,7 +5160,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5213,7 +5213,7 @@
                 </w>
             </p>
             <p>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5377,7 +5377,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -5558,7 +5558,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -5659,7 +5659,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                      
                     </w>
                     <w type1="名詞" type2="代名詞" type3="一般" type4="*" number="*" rule="*" root="おまえ" spelled="オマエ" spoken="オマエ">
@@ -5833,7 +5833,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -6009,7 +6009,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -6218,7 +6218,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -6651,7 +6651,7 @@
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="も" spelled="モ" spoken="モ">
                 も
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 怺
                 </w>
                 <w type1="フィラー" type2="*" type3="*" type4="*" number="*" rule="*" root="え" spelled="エ" spoken="エ">
@@ -6696,7 +6696,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="も" spelled="モ" spoken="モ">
@@ -6852,7 +6852,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -7008,7 +7008,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -7224,7 +7224,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="副助詞" type3="*" type4="*" number="*" rule="*" root="ほど" spelled="ホド" spoken="ホド">
@@ -7783,7 +7783,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -7838,7 +7838,7 @@
                     <w type1="接頭詞" type2="名詞接続" type3="*" type4="*" number="*" rule="*" root="お" spelled="オ" spoken="オ">
                     お
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     互
                     </w>
                     <w type1="名詞" type2="接尾" type3="人名" type4="*" number="*" rule="*" root="さま" spelled="サマ" spoken="サマ">
@@ -7949,7 +7949,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -8022,7 +8022,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -8162,7 +8162,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -8357,7 +8357,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -8453,7 +8453,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -8708,7 +8708,7 @@
                 <w type1="形容詞" type2="自立" type3="*" type4="*" number="形容詞・アウオ段" rule="基本形" root="若い" spelled="ワカイ" spoken="ワカイ">
                 若い
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -8915,7 +8915,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -9271,7 +9271,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -9655,7 +9655,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -9905,7 +9905,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -10013,7 +10013,7 @@
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
                 は
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="も" spelled="モ" spoken="モ">
@@ -10139,7 +10139,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -10148,7 +10148,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 ざんぶと
                 </w>
                 <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="流れ" spelled="ナガレ" spoken="ナガレ">
@@ -10466,7 +10466,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -11088,7 +11088,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -11366,7 +11366,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -11593,7 +11593,7 @@
                 <w type1="動詞" type2="自立" type3="*" type4="*" number="五段・サ行" rule="連用形" root="倒す" spelled="タオシ" spoken="タオシ">
                 倒し
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 韋
                 </w>
                 <w type1="名詞" type2="接尾" type3="助数詞" type4="*" number="*" rule="*" root="駄" spelled="ダ" spoken="ダ">
@@ -11626,7 +11626,7 @@
                 <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・タ" rule="基本形" root="た" spelled="タ" spoken="タ">
                 た
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="終助詞" type3="*" type4="*" number="*" rule="*" root="よ" spelled="ヨ" spoken="ヨ">
@@ -11647,7 +11647,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="終助詞" type3="*" type4="*" number="*" rule="*" root="よ" spelled="ヨ" spoken="ヨ">
@@ -12586,7 +12586,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="終助詞" type3="*" type4="*" number="*" rule="*" root="よ" spelled="ヨ" spoken="ヨ">
@@ -12781,7 +12781,7 @@
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
                 は
                 </w>
-                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                  
                 </w>
                 <w type1="名詞" type2="代名詞" type3="一般" type4="*" number="*" rule="*" root="私" spelled="ワタシ" spoken="ワタシ">
@@ -12844,7 +12844,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -12961,7 +12961,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
@@ -13662,7 +13662,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="終助詞" type3="*" type4="*" number="*" rule="*" root="よ" spelled="ヨ" spoken="ヨ">
@@ -14110,13 +14110,13 @@
                 <w type1="動詞" type2="自立" type3="*" type4="*" number="五段・ラ行" rule="基本形" root="ぬる" spelled="ヌル" spoken="ヌル">
                 ぬる
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 哉
                 </w>
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="サ変接続" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="サ変接続" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 ――
                 </w>
                 <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="四肢" spelled="シシ" spoken="シシ">
@@ -14167,7 +14167,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 潺
                 </w>
                 <w type1="記号" type2="一般" type3="*" type4="*" number="*" rule="*" root="々" spelled="々" spoken="々">
@@ -14305,7 +14305,7 @@
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
                 の
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 裂
                 </w>
                 <w type1="名詞" type2="接尾" type3="一般" type4="*" number="*" rule="*" root="目" spelled="メ" spoken="メ">
@@ -14389,7 +14389,7 @@
                 <w type1="助詞" type2="副詞化" type3="*" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
                 に
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -14977,7 +14977,7 @@
                 <w type1="記号" type2="一般" type3="*" type4="*" number="*" rule="*" root="！" spelled="！" spoken="！">
                 ！
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -15151,7 +15151,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
@@ -15442,7 +15442,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -15625,7 +15625,7 @@
                 <w type1="助詞" type2="並立助詞" type3="*" type4="*" number="*" rule="*" root="と" spelled="ト" spoken="ト">
                 と
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 颯
                 </w>
                 <w type1="助詞" type2="格助詞" type3="引用" type4="*" number="*" rule="*" root="っと" spelled="ット" spoken="ット">
@@ -15822,7 +15822,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -15918,7 +15918,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -16036,7 +16036,7 @@
                 、
                 </w>
                 <placeName>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     シラクス
                     </w>
                 </placeName>
@@ -16113,7 +16113,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="名詞" type2="接尾" type3="人名" type4="*" number="*" rule="*" root="様" spelled="サマ" spoken="サマ">
@@ -16176,7 +16176,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -16201,7 +16201,7 @@
                     <w type1="記号" type2="括弧開" type3="*" type4="*" number="*" rule="*" root="「" spelled="「" spoken="「">
                     「
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     フィロストラトス
                     </w>
                     <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・ダ" rule="連用形" root="だ" spelled="デ" spoken="デ">
@@ -16228,7 +16228,7 @@
                     <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="友達" spelled="トモダチ" spoken="トモダチ">
                     友達
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     セリヌンティウス
                     </w>
                     <w type1="名詞" type2="接尾" type3="人名" type4="*" number="*" rule="*" root="様" spelled="サマ" spoken="サマ">
@@ -16273,7 +16273,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -16590,7 +16590,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -16843,7 +16843,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -17097,7 +17097,7 @@
                     <w type1="記号" type2="一般" type3="*" type4="*" number="*" rule="*" root="！" spelled="！" spoken="！">
                     ！
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     フィロストラトス
                     </w>
                     <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -17260,7 +17260,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -17275,7 +17275,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -17436,7 +17436,7 @@
                 <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                 、
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -17517,7 +17517,7 @@
                     <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                     。
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="が" spelled="ガ" spoken="ガ">
@@ -17749,7 +17749,7 @@
                 <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・タ" rule="基本形" root="た" spelled="タ" spoken="タ">
                 た
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -17776,7 +17776,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -17874,7 +17874,7 @@
                         <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="刑" spelled="ケイ" spoken="ケイ">
                         刑
                         </w>
-                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                         吏
                         </w>
                     </roleName>
@@ -17905,7 +17905,7 @@
                     <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                     。
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="助動詞" type2="*" type3="*" type4="*" number="特殊・ダ" rule="基本形" root="だ" spelled="ダ" spoken="ダ">
@@ -18098,7 +18098,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -18138,7 +18138,7 @@
                     <w type1="記号" type2="括弧開" type3="*" type4="*" number="*" rule="*" root="「" spelled="「" spoken="「">
                     「
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     セリヌンティウス
                     </w>
                     <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -18148,7 +18148,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -18342,7 +18342,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -18396,7 +18396,7 @@
                 <w type1="形容詞" type2="自立" type3="*" type4="*" number="形容詞・アウオ段" rule="連用テ接続" root="高い" spelled="タカク" spoken="タカク">
                 高く
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -18442,7 +18442,7 @@
                     <w type1="記号" type2="括弧開" type3="*" type4="*" number="*" rule="*" root="「" spelled="「" spoken="「">
                     「
                     </w>
-                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
@@ -18635,7 +18635,7 @@
                     」
                     </w>
                 </said>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -18659,7 +18659,7 @@
                 <w type1="助詞" type2="接続助詞" type3="*" type4="*" number="*" rule="*" root="て" spelled="テ" spoken="テ">
                 て
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 セリヌンティウス
                 </w>
                 <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">
@@ -18802,7 +18802,7 @@
                 <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="暴君" spelled="ボウクン" spoken="ボークン">
                 暴君
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 ディオニス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -19223,7 +19223,7 @@
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="を" spelled="ヲ" spoken="ヲ">
                 を
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="に" spelled="ニ" spoken="ニ">
@@ -19238,7 +19238,7 @@
                 <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
                 。
                 </w>
-                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                 メロス
                 </w>
                 <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">
@@ -19299,7 +19299,7 @@
                     <w type1="記号" type2="括弧開" type3="*" type4="*" number="*" rule="*" root="「" spelled="「" spoken="「">
                     「
                     </w>
-                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="固有名詞" type3="組織" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
@@ -19317,7 +19317,7 @@
                     <w type1="接頭詞" type2="名詞接続" type3="*" type4="*" number="*" rule="*" root="まっ" spelled="マッ" spoken="マッ">
                     まっ
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     ぱだかじゃないか
                     </w>
                     <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
@@ -19365,7 +19365,7 @@
                     <w type1="記号" type2="読点" type3="*" type4="*" number="*" rule="*" root="、" spelled="、" spoken="、">
                     、
                     </w>
-                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                    <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                     メロス
                     </w>
                     <w type1="助詞" type2="連体化" type3="*" type4="*" number="*" rule="*" root="の" spelled="ノ" spoken="ノ">

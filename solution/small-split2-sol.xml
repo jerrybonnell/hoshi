@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../../../../Downloads/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="/Users/jerrybonnell/Google Drive/grad/tei/kuro/schema/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
     <teiHeader>
         <fileDesc>
@@ -83,7 +83,7 @@
                         ignore
                     </abbr>
                     <expan>
-                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*">
+                        <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
                         メロス
                         </w>
                         <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="は" spelled="ハ" spoken="ワ">

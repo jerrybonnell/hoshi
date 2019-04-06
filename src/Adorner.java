@@ -89,7 +89,7 @@ public class Adorner
   // private boolean inExpan;              // whether it is inside <expan> 
 
   private String sentence;              // the sentence to be parsed
-  private String expanToken;           
+  //private String expanToken;           
       // the portion within an <expan> tag to be parsed   
   private Block presentBlock;           // the Block being processed
 
@@ -140,7 +140,7 @@ public class Adorner
     blockEnd = new ArrayList< Integer >();
     blockUse = new ArrayList< Boolean >();
     sentence = "";
-    expanToken = "";
+    //expanToken = "";
   }
 
   /**
@@ -210,19 +210,8 @@ public class Adorner
   }
 
   /**
-   * Generates the adornment for a token using a combination of 
-   * <term> and <gloss> tags in a "list" structure, and writes it to file 
-   * ex:  <term n=token> 
-   *         <gloss n="token"> original </gloss>
-   *         <gloss n="type1"> ... </gloss>
-   *         <gloss n="type2"> ... </gloss>
-   *         etc..
-   *      </term> 
-   *
-   * @param token the input to be adorned 
-   * @param features the array of attributes to adorn the input with
-   * @param original the original word before segmentation
-   * 
+   * Generate a String representing the adornment and print it
+   * token= ..., type1 = ..., type2 = ..., etc. 
    */
   private void tokenAttribute (String token, String[] features, 
     LinkedList<String> stack, String original) throws IOException
@@ -335,6 +324,10 @@ public class Adorner
    */
   private void parseSentence() throws IOException
   {
+    System.out.println("*********");
+    System.out.println("BLOCKLIST");
+    System.out.println(blockList);
+    System.out.println("********");
     // if the blockList has size 0, there is nothing to do
     if ( blockList.size() == 0 )
     {
@@ -408,12 +401,12 @@ public class Adorner
     String residual = ""; 
     int i = 0; // wordIndex 
     LinkedList<String> linkedTags = new LinkedList<>(); 
-    System.out.println("** expanToken  " + expanToken + "**");
-    String[] expanResult = analyzer.tokenize( expanToken ); 
-    System.out.println("** len of expanResult   " + expanResult.length + "**");
-    for (int index = 0 ; index < expanResult.length; index++) {
+    //System.out.println("** expanToken  " + expanToken + "**");
+    //String[] expanResult = analyzer.tokenize( expanToken ); 
+    //System.out.println("** len of expanResult   " + expanResult.length + "**");
+    /*for (int index = 0 ; index < expanResult.length; index++) {
       System.out.print("[" + analyzer.getSurfaceForm(expanResult[index]) + "]");
-    }
+    }*/
     System.out.println();
 
     for ( bPos = 0; bPos < blockList.size(); bPos ++ )
@@ -444,7 +437,7 @@ public class Adorner
 
         // typically we print out all tags that dont need definitions here, 
         // but when we see <expan> we need to do something special 
-        if (
+        /*if (
           (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
             && (
                 linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan")
@@ -648,10 +641,10 @@ public class Adorner
           i++;
           residual = "";
         }
-      }
+      }*/}
       else
       {
-        //boolean originalAdded = false; // has a gloss tag been added for orig
+        // there are words that haven't been adorned yet 
         while ( tPos < result.length &&
             tokenStart[ tPos ] < blockEnd.get( bPos ) )
         {
@@ -661,7 +654,6 @@ public class Adorner
             inp = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
                   Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
-          //  originalAdded = true;
             System.out.println("if inp   " + inp); 
           } else {
             inp = sentence.substring(
@@ -674,12 +666,12 @@ public class Adorner
           System.out.println("inp : [" + inp + "]");
           System.out.println("********" + inp);
           System.out.println("********" + blockList.get(bPos));
-          if (bPos + 1 < blockList.size()) {
-            System.out.println("********" + blockList.get(bPos + 1));
-            if (!blockList.get(bPos + 1).getTagName().equals("choice")) {
-            //  originalAdded = false;
-            }
-          }
+          // if (bPos + 1 < blockList.size()) {
+          //   System.out.println("********" + blockList.get(bPos + 1));
+          //   if (!blockList.get(bPos + 1).getTagName().equals("choice")) {
+          //   //  originalAdded = false;
+          //   }
+          // }
           System.out.println(tokenStart[ tPos ]);
           System.out.println(blockStart.get( bPos ));
           System.out.println(tokenEnd[ tPos ]);
@@ -763,6 +755,7 @@ public class Adorner
    */
   private void incorporate()
   {
+    System.out.println("blockList " + blockList); 
     System.out.println("tagStack  " + tagStack);
     /////  update choice and corr 
     if (presentBlock.isOpen() 
@@ -812,7 +805,8 @@ public class Adorner
     if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
         && tagStack.contains("expan")) 
     {
-      expanToken += presentBlock.getTagName();
+      //expanToken += presentBlock.getTagName();
+      comp += presentBlock.getTagName();
     } else if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
         && !tagStack.peek().equals("expan"))
     {
@@ -821,7 +815,8 @@ public class Adorner
       // we know we are inside <expan>, start building "road" to give to 
       // kuromoji 
     } else if (presentBlock.isNonTag() && tagStack.peek().equals("expan")) {
-      expanToken += presentBlock.getTagName();
+      //expanToken += presentBlock.getTagName();
+      comp += presentBlock.getTagName();
     } 
 
     blockUse.add( comp.length() > 0 );
@@ -831,6 +826,7 @@ public class Adorner
     System.out.println(" presentBlock   " + presentBlock);
     sentence += comp;
     System.out.println("s : " + sentence);
+    System.out.println(blockList);
   }
 
   /**
@@ -880,6 +876,7 @@ public class Adorner
       //   if the part is not empty
       Block residual = null;
       int pos = findMaru( presentBlock );
+      // there is maru in this line
       if ( pos >= 0 )
       {
         String base = presentBlock.getTagName();
