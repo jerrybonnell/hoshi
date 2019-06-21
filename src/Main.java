@@ -5,12 +5,12 @@ package src;
  *
  * See the NOTICE.txt file distributed with this work for additional
  * information regarding copyright ownership.
- * 
+ *
  * Atilika Inc. licenses this file to you under the Apache License, Version
  * 2.0 (the "License"); you may not use this file except in compliance with
  * the License.  A copy of the License is distributed with this work in the
  * LICENSE.txt file.  You may also obtain a copy of the License from
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
@@ -52,7 +52,7 @@ import org.chasen.mecab.Node;
 
 public class Main
 {
-  
+
   static {
     try {
        System.loadLibrary("MeCab");
@@ -67,52 +67,49 @@ public class Main
   public static void error()
   {
     System.out.println(
-        "USAGE: [--analyze ANALYZER] [--mode MODE] [--dict DICT] " +
-        " [--input FILE] [--output FILE]"
+        "Japanese Morphological Adorner for TEI XML -- " +
+        "github.com/jerrybonnell/hoshi\n" +
+        "usage: --analyze ANALYZER " +
+        " --input FILE --output FILE [--model XML MODEL]"
         );
-    System.out.println( "If --dict is given, --mode must be given" );
     System.exit( 1 );
   }
 
   public static void main( String[] args ) throws IOException
   {
-    if ( args.length != 6 && args.length != 8 && args.length != 10 )
-    {
-      error();
-    }
-    Analyzer analyzer = null; 
-    String modeName = null, dictName = null, aName = null; 
-    String inputName = null, outputName = null;
+    Analyzer analyzer = null;
+    String aName = null;
+    String inputName = null, outputName = null, modelName = null;
     for ( int i = 0; i < args.length; i += 2 )
     {
       switch ( args[ i ] )
       {
-        case "--analyze": aName = args[ i + 1 ]; break; 
-        case "--mode": modeName = args[ i + 1 ]; break;
-        case "--dict": dictName = args[ i + 1 ]; break;
+        case "--analyze": aName = args[ i + 1 ]; break;
         case "--input": inputName = args[ i + 1 ]; break;
         case "--output": outputName = args[ i + 1 ]; break;
+        case "--model": modelName = args[ i + 1 ]; break;
         default: error();
       }
     }
-    if ( inputName == null || outputName == null
-      || modeName == null && dictName != null 
-      || aName == null )
+    if ( inputName == null || outputName == null || aName == null )
     {
       error();
     }
+    if (modelName == null) {
+      modelName = "../schema/tei_pos.rnc"; // default location
+    }
 
-    if (aName.equals("Mecab")) {
+    if (aName.equals("MeCab")) {
       analyzer = new MecabAnalyzer();
     } else if (aName.equals("Kuromoji")) {
-      analyzer = new KuroAnalyzer(modeName, dictName);
+      analyzer = new KuroAnalyzer();
     } else if (aName.equals("Kagome")) {
-      analyzer = new KagomeAnalyzer(null, null); 
+      analyzer = new KagomeAnalyzer();
     } else {
-      error(); 
+      error();
     }
-    System.out.println(analyzer);
-    Adorner ad = new Adorner( analyzer, inputName, outputName );
+    // System.out.println(analyzer);
+    Adorner ad = new Adorner(analyzer, inputName, outputName, modelName);
     ad.process();
   }
 }

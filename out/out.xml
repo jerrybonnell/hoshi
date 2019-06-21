@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schema/tei_pos.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
+    <text>
+        <body>
+            <p>
+                <w token="山賊" type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="山賊" spelled="サンゾク" spoken="サンゾク">
+                山
+                </w>
+                <choice>
+                    <sic>
+                        賊三人を
+                    </sic>
+                    <corr>
+                        賊
+                        <w type1="助詞" type2="格助詞" type3="一般" type4="*" number="*" rule="*" root="を" spelled="ヲ" spoken="ヲ">
+                        を
+                        </w>
+                        <w type1="名詞" type2="数" type3="*" type4="*" number="*" rule="*" root="三" spelled="サン" spoken="サン">
+                        三
+                        </w>
+                        <w type1="名詞" type2="接尾" type3="助数詞" type4="*" number="*" rule="*" root="人" spelled="ニン" spoken="ニン">
+                        人
+                        </w>
+                    </corr>
+                </choice>
+                <w type1="助詞" type2="係助詞" type3="*" type4="*" number="*" rule="*" root="も" spelled="モ" spoken="モ">
+                も
+                </w>
+                <w type1="記号" type2="空白" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
+                 
+                </w>
+                <w type1="動詞" type2="自立" type3="*" type4="*" number="五段・タ行" rule="連用形" root="撃つ" spelled="ウチ" spoken="ウチ">
+                撃ち
+                </w>
+                <w type1="動詞" type2="自立" type3="*" type4="*" number="五段・サ行" rule="連用形" root="倒す" spelled="タオシ" spoken="タオシ">
+                倒し
+                </w>
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="*" spelled="*" spoken="*">
+                韋
+                </w>
+                <w type1="名詞" type2="接尾" type3="助数詞" type4="*" number="*" rule="*" root="駄" spelled="ダ" spoken="ダ">
+                駄
+                </w>
+                <w type1="名詞" type2="一般" type3="*" type4="*" number="*" rule="*" root="天" spelled="テン" spoken="テン">
+                天
+                </w>
+                <w type1="記号" type2="句点" type3="*" type4="*" number="*" rule="*" root="。" spelled="。" spoken="。">
+                。
+                </w>
+            </p>
+        </body>
+    </text>
+</TEI>

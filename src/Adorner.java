@@ -16,12 +16,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Stack; 
-import java.util.LinkedList; 
+import java.util.Stack;
+import java.util.LinkedList;
 
-//import org.atilika.kuromoji.Token;
-//import org.atilika.kuromoji.Tokenizer;
-//import org.atilika.kuromoji.Tokenizer.Mode;
 
 /**
  * The class for adorning a Japanese xml file using Kuromoji
@@ -34,10 +31,6 @@ import java.util.LinkedList;
  * 5. All the tags will be preserved.
  *
  *
- * date last modified: 1 jan 2019
- * last modified by: jerry bonnell 
- * notes: replace <ww> with <term> and <gloss> tags to make 
- *        adornment TEI-conformant
  *
  */
 public class Adorner
@@ -52,45 +45,38 @@ public class Adorner
   // the 9 possible attribbutes
   public static final String[] ATTRIBUTES = {
       "type1", "type2", "type3", "type4", "number", "rule",
-      "root", "spelled", "spoken" }; 
-
-  // location of RELAX NG file 
-  public static final String XML_MODEL = 
-    "<?xml-model href=\"/Users/jerrybonnell/Google Drive/grad/tei/kuro/"
-    + "schema/tei_pos.rnc\"" +
-    " type=\"application/relax-ng-compact-syntax\"?>";
+      "root", "spelled", "spoken" };
 
   // the prefix of the open tag
   public static final String SPECIAL_OPEN_PREFIX = "<w ";
   public static final String SPECIAL_OPEN_SUFFIX = ">";
   public static final String SPECIAL_CLOSE = "</w>";
 
-  // the prefix and suffix of the term tag 
+  // the prefix and suffix of the term tag
   public static final String TERM_OPEN_PREFIX = "<term ";
-  public static final String TERM_CLOSE = "</term>";  
-  // the prefix and suffix of the gloss tag 
+  public static final String TERM_CLOSE = "</term>";
+  // the prefix and suffix of the gloss tag
   public static final String GLOSS_OPEN_PREFIX = "<gloss ";
-  public static final String GLOSS_CLOSE = "</gloss>"; 
-  // the suffix of the open tag 
+  public static final String GLOSS_CLOSE = "</gloss>";
+  // the suffix of the open tag
   public static final String OPEN_SUFFIX = ">";
+
+  // verbose mode
+  public static final boolean VERBOSE = false;
 
   //////// INSTANCE VARIABLES ////////
   private Analyzer analyzer;          // Kuromoji tokenizer
   private String iName;			// input file name
   private String oName;			// output file name
+  private String mName;     // location of XML schema model
   private BufferedReader reader;	// input file reader
   private BufferedWriter writer;	// output file writer
   private XMLProcessor parser;		// XMLProcessor
   private Iterator< Block > iter;	// Iterator of text blocks
   private int depth;			// indentation depth
-  // private boolean inChoice;		// whether it is inside <choice>
-  // private boolean inCorr;               // whether it is inside <corr>
-  // private boolean inReg;                // whether it is inside <reg>
-  // private boolean inExpan;              // whether it is inside <expan> 
 
   private String sentence;              // the sentence to be parsed
-  //private String expanToken;           
-      // the portion within an <expan> tag to be parsed   
+
   private Block presentBlock;           // the Block being processed
 
   private ArrayList< Block > blockList; // the blocks forming the sentence
@@ -108,13 +94,17 @@ public class Adorner
    * @param	analyzer	the Tokenizer object
    * @param	inFileName	the input file name
    * @param	outFileName	the output file name
+   * @param modelName the XML model name/location
    */
-  public Adorner( Analyzer a, String inFileName, String outFileName )
+  public Adorner( Analyzer a, String inFileName, String outFileName,
+                  String modelName )
       throws IOException
   {
     analyzer = a;
     iName = inFileName;
     oName = outFileName;
+    mName = "<?xml-model href=\"" + modelName + "\"" +
+    " type=\"application/relax-ng-compact-syntax\"?>";
     reader = new BufferedReader( new InputStreamReader(
         new FileInputStream( iName ), "UTF-8") );
     writer = new BufferedWriter( new OutputStreamWriter(
@@ -122,8 +112,8 @@ public class Adorner
 
     parser = new XMLProcessor( reader );
     iter = parser.iterator();
-    tagStack = new Stack< String >(); 
-    tagStack.push("@"); // dummy push 
+    tagStack = new Stack< String >();
+    tagStack.push("@"); // dummy push
 
     cleanBuffer();
     depth = 0;
@@ -166,7 +156,7 @@ public class Adorner
 
   private int findMaru( Block w )
   {
-    return ( !w.isNonTag() || tagStack.peek().equals("choice")  
+    return ( !w.isNonTag() || tagStack.peek().equals("choice")
       && !tagStack.peek().equals("choice") ) ? -1 : findMaru( w.getTagName() );
   }
 
@@ -183,23 +173,23 @@ public class Adorner
 
   /**
    * Generate a String representing the adornment and print it
-   * type1 = ..., type2 = ..., etc. 
+   * type1 = ..., type2 = ..., etc.
    */
-  private void tokenAttribute( String token, String[] features,  
+  private void tokenAttribute( String token, String[] features,
       LinkedList<String> stack ) throws IOException
   {
-    System.out.println("adding w tags to " + token); 
-    String value = (!stack.isEmpty() 
+    if (VERBOSE) System.out.println("adding w tags to " + token);
+    String value = (!stack.isEmpty()
       && stack.getFirst().equals("w")) ? " " : SPECIAL_OPEN_PREFIX;
     for ( int i = 0; i < features.length; i ++ )
     {
       value += ATTRIBUTES[ i ] + "=\"" + features[ i ] + "\"";
       value += ( i < features.length - 1 ) ? " " : SPECIAL_OPEN_SUFFIX;
     }
-    
+
     if (!stack.isEmpty() && stack.getFirst().equals("w")) {
       writer.append( value + "\n" );
-      depth--; 
+      depth--;
       indentAndWrite(token);
       depth++;
     } else {
@@ -211,14 +201,14 @@ public class Adorner
 
   /**
    * Generate a String representing the adornment and print it
-   * token= ..., type1 = ..., type2 = ..., etc. 
+   * token= ..., type1 = ..., type2 = ..., etc.
    */
-  private void tokenAttribute (String token, String[] features, 
+  private void tokenAttribute (String token, String[] features,
     LinkedList<String> stack, String original) throws IOException
   {
-    System.out.println("add SPECIAL w tag to " + token); 
+    if(VERBOSE) System.out.println("add SPECIAL w tag to " + token);
 
-    String value = (!stack.isEmpty() && 
+    String value = (!stack.isEmpty() &&
       stack.getFirst().equals("w")) ? " " : SPECIAL_OPEN_PREFIX;
     value += "token"+ "=\"" + original + "\" ";
     for ( int i = 0; i < features.length; i ++ )
@@ -229,7 +219,7 @@ public class Adorner
 
     if (!stack.isEmpty() && stack.getFirst().equals("w")) {
       writer.append( value + "\n" );
-      depth--; 
+      depth--;
       indentAndWrite(token);
       depth++;
     } else {
@@ -324,10 +314,6 @@ public class Adorner
    */
   private void parseSentence() throws IOException
   {
-    System.out.println("*********");
-    System.out.println("BLOCKLIST");
-    System.out.println(blockList);
-    System.out.println("********");
     // if the blockList has size 0, there is nothing to do
     if ( blockList.size() == 0 )
     {
@@ -344,7 +330,7 @@ public class Adorner
      * positions of the token in "sentence"
      */
 
-    String[] result = analyzer.tokenize( sentence ); 
+    String[] result = analyzer.tokenize( sentence );
     for ( String line : result )
     {
       System.out.println( analyzer.getSurfaceForm(line) + "\t"
@@ -357,11 +343,11 @@ public class Adorner
     for ( int i = 0; i < result.length; i++ )
     {
       tokenStart[ i ] = p;
-      System.out.println("tokenStart : " + tokenStart[i]);
-      p += analyzer.getSurfaceForm(result[ i ]).length(); 
+      if (VERBOSE) System.out.println("tokenStart : " + tokenStart[i]);
+      p += analyzer.getSurfaceForm(result[ i ]).length();
       tokenEnd[ i ] = p;
-      System.out.println("tokenEnd : " + tokenEnd[i]);
-    } 
+      if (VERBOSE) System.out.println("tokenEnd : " + tokenEnd[i]);
+    }
 
     /* double-loop using the indexes to the blocks, "bPos", and
      * to the tokens, "tPos"
@@ -387,7 +373,7 @@ public class Adorner
      * Block's start position, it means that this is the
      * first time output is generated for the token, so
      * the method prints the attributes.
-     * 
+     *
      * After that, if the end position of the token is <=
      * the end position of the Block, move on to the next
      * token; otherwise, move on to the next Block object
@@ -398,11 +384,11 @@ public class Adorner
     int tPos = 0;
     String piece = "";
     String word = "";
-    String residual = ""; 
-    int i = 0; // wordIndex 
-    LinkedList<String> linkedTags = new LinkedList<>(); 
+    String residual = "";
+    int i = 0; // wordIndex
+    LinkedList<String> linkedTags = new LinkedList<>();
     //System.out.println("** expanToken  " + expanToken + "**");
-    //String[] expanResult = analyzer.tokenize( expanToken ); 
+    //String[] expanResult = analyzer.tokenize( expanToken );
     //System.out.println("** len of expanResult   " + expanResult.length + "**");
     /*for (int index = 0 ; index < expanResult.length; index++) {
       System.out.print("[" + analyzer.getSurfaceForm(expanResult[index]) + "]");
@@ -411,323 +397,112 @@ public class Adorner
 
     for ( bPos = 0; bPos < blockList.size(); bPos ++ )
     {
-      System.out.println("===========");
-      System.out.println("[ " + blockList.get(bPos) + " ]");
-      System.out.println("[" + blockList.get(bPos).getTagType() + "   " + 
-                          blockList.get(bPos).getTagName() + "]");
-      // build a stack of current tags seen so far 
+      if (VERBOSE) {
+        System.out.println("===========");
+        System.out.println("[ " + blockList.get(bPos) + " ]");
+        System.out.println("[" + blockList.get(bPos).getTagType()
+          + "   " + blockList.get(bPos).getTagName() + "]");
+      }
+
+      // build a stack of current tags seen so far
       if (blockList.get(bPos).isOpen()) {
         linkedTags.addFirst(blockList.get(bPos).getTagName());
       } else if (blockList.get(bPos).isClose()) {
         linkedTags.remove(blockList.get(bPos).getTagName());
       }
-      
-      System.out.println("current chain  " + linkedTags);
-      System.out.println("blockUse.get(bPos)    " + blockUse.get( bPos ));
-      System.out.println("blockList.get(bPos)   " + blockList.get( bPos ));
 
-      if ( !blockUse.get( bPos ) ) // not doing the definition mode 
+      if (VERBOSE) {
+      System.out.println("current chain  " + linkedTags);
+      System.out.println("blockUse.get(bPos)    "
+        + blockUse.get( bPos ));
+      System.out.println("blockList.get(bPos)   "
+        + blockList.get( bPos ));
+      }
+
+      if ( !blockUse.get( bPos ) ) // not doing the definition mode
       {
         if (!linkedTags.isEmpty() && linkedTags.getFirst().equals("w")) {
           simpleBlockWrite( blockList.get( bPos ), true);
         } else {
           simpleBlockWrite( blockList.get( bPos ) );
         }
-        
-
-        // typically we print out all tags that dont need definitions here, 
-        // but when we see <expan> we need to do something special 
-        /*if (
-          (!linkedTags.isEmpty() && linkedTags.getFirst().equals("expan")
-            && (
-                linkedTags.indexOf("expan") == linkedTags.lastIndexOf("expan")
-                // if piece is empty then we see a <expan> again, it might 
-                // be a new word 
-                || piece.length() == 0
-              ) 
-            && blockList.get(bPos + 1).isNonTag()
-          )
-          // we need to come back in if there is some residual left 
-          || (residual.length() > 0 && !linkedTags.getFirst().equals("ex"))
-          //|| (residual.length() > 0 && linkedTags.getFirst().equals("corr"))
-          )
-          {
-          System.out.println("in the if");
-          // first <expan> we seen so far 
-          piece = blockList.get(bPos + 1).getTagName();
-          // // update piece in case of new lines
-          while (bPos + 2 < blockList.size() 
-                 && blockList.get(bPos + 2).isNonTag()) {
-            // if blockList.get(bPos + counter) is a nontag, then it is a text
-            // and should be incorporated into piece; this is the situation,
-            // as in small-split2 
-            String nextLine = blockList.get(bPos + 2).getTagName();
-            piece += nextLine; 
-            bPos++;  
-          }
-
-          if (residual.length() > 0) {
-            System.out.println("residual > 0 true");
-            if (piece.length() < residual.length()) {
-              // situation where a word is segmented by multiple <ex>
-              System.out.println("@@ piece < residual now");
-              System.out.println("@@ piece " + piece); 
-              System.out.println("@@ residual " + residual); 
-              //residual = residual.substring(piece.length(), residual.length());
-              System.out.println("@@ residual updated! " + residual); 
-              simpleBlockWrite(new Block(piece));
-              bPos++;
-              continue;
-            }
-            System.out.println("simpleBlockWrite: [" + residual + "]");
-            simpleBlockWrite(new Block(residual));
-            piece = piece.substring(residual.length(), piece.length());
-            if (piece.length() == 0 && i < expanResult.length) {
-              // if piece is empty and there is more to go from kuromoji then 
-              // we should update it 
-              bPos++; 
-              piece = blockList.get(bPos + 1).getTagName(); 
-              System.out.println("piece updated!  [" + piece + "]");
-            }
-            residual = "";
-            if (!blockList.get(bPos + 1).isNonTag()) {
-              // piece may become a tag like expan
-              continue;
-            }
-          }
-          if (i == expanResult.length) {
-            if (piece.length() > 0) {
-              simpleBlockWrite(new Block(piece));
-            }
-            bPos++;
-            System.out.println("  >>>    continued");
-            System.out.println("piece  [" + piece + "]");
-            System.out.println("word   [" + word + "]");  
-            System.out.println("residual   [" + residual + "]");
-            System.out.println("blockList   [" + 
-              blockList.get(bPos).getTagName() + "]");  
-            continue;
-          }
-          System.out.println("piece     [" + piece + "]"); 
-          word = analyzer.getSurfaceForm(expanResult[i]);
-          System.out.println("word      " + word);
-          // assumes that length of piece is longer than word 
-          while (piece.indexOf(word) == 0) {
-            // print out the explanation for word 
-            String [] features = analyzer.getAllFeatures(
-              expanResult[i]).split(",");
-            tokenAttribute(word, features, linkedTags);
-            piece = piece.substring(word.length(), piece.length()); 
-            if (piece.length() == 0) {
-              System.out.println("breaking now"); 
-              break;
-            }
-            i++;
-            word = analyzer.getSurfaceForm(expanResult[i]);
-            System.out.println("## i " + i); 
-            System.out.println("## expanResult[i]    " + expanResult[i]); 
-            System.out.println("## piece      " + piece +  " ##");
-            System.out.println("## word      " + word +  " ##");  
-          }
-
-          System.out.println("##### out of while with...");
-          System.out.println("##### piece     [" + piece +  "]");
-          System.out.println("##### word      [" + word +  "]");  
-          System.out.println("##### residual  [" + residual + "]");
-          // when that is no longer true, there is something segmenting the 
-          // next word to parse into fragments 
-          if (piece.length() > 0) {
-            String [] features = analyzer.getAllFeatures(
-              expanResult[i]).split(",");
-            tokenAttribute(piece, features, linkedTags, word);
-          }
-          i++; 
-          bPos++; // we don't want to print the first part (に) again 
-        } else if (
-            (!linkedTags.isEmpty() && (linkedTags.getFirst().equals("ex"))) 
-          ) 
-        {
-          boolean changed = false; 
-          String chars = blockList.get(bPos + 1).getTagName(); 
-          piece = piece + chars;
-          // // update piece in case of new lines
-          while (bPos + 2 < blockList.size() 
-                 && blockList.get(bPos + 2).isNonTag()) {
-            // if blockList.get(bPos + counter) is a nontag, then it is a text
-            // and should be incorporated into piece; this is the situation,
-            // as in small-split2 
-            String nextLine = blockList.get(bPos + 2).getTagName();
-            piece += nextLine; 
-            bPos++;
-            changed = true;   
-          } 
-          System.out.println("ex word [" + word + "]"); 
-          System.out.println("ex piece [" + piece + "]"); 
-          if (word.indexOf(piece) == 0) {
-            residual = word.substring(piece.length(), word.length()); 
-          } else if (residual.indexOf(piece) == 0) {
-            // compensate for chains of <ex> tags 
-            residual = residual.substring(piece.length(), residual.length()); 
-          }
-          System.out.println("ex piece updated   [" + piece + "]"); 
-          System.out.println("ex residual updated [" + residual + "]"); 
-          System.out.println("simpleBlockWrite : [ "
-            + blockList.get( bPos + 1 ) + " ]");
-          if (changed) {
-            simpleBlockWrite( new Block( piece ) );
-          } else {
-            simpleBlockWrite( blockList.get(bPos + 1) );
-          }
-          bPos++; 
-        } else if (
-          !linkedTags.isEmpty() && linkedTags.getFirst().equals("corr")  
-          && linkedTags.contains("expan") && blockList.get(bPos + 1).isNonTag()
-          ) 
-        { 
-          String chars = blockList.get(bPos + 1).getTagName(); 
-          //piece = piece + chars; 
-          System.out.println("corr word [" + word + "]"); 
-          System.out.println("corr piece [" + piece + "]"); 
-          if (word.indexOf(piece) == 0 && piece.length() != 0) {
-            residual = word.substring(piece.length(), word.length());
-            System.out.println("sbw : [" + residual + "]");
-            simpleBlockWrite(new Block(residual)); 
-          }
-          piece = chars;
-          // // update piece in case of new lines
-          while (bPos + 2 < blockList.size() 
-                 && blockList.get(bPos + 2).isNonTag()) {
-            // if blockList.get(bPos + counter) is a nontag, then it is a text
-            // and should be incorporated into piece; this is the situation,
-            // as in small-split2 
-            String nextLine = blockList.get(bPos + 2).getTagName();
-            piece += nextLine; 
-            bPos++;
-          } 
-          if (piece.indexOf(residual) == 0) {
-            piece = piece.substring(residual.length(), piece.length());
-          }
-
-          System.out.println("corr piece updated   [" + piece + "]"); 
-          System.out.println("corr residual updated [" + residual + "]"); 
-          System.out.println("corr simpleBlockWrite : [ "
-            + blockList.get( bPos + 1 ) + " ]"); 
-          word = analyzer.getSurfaceForm(expanResult[i]);
-          System.out.println("corr word [" + word + "]");
-
-          while (piece.indexOf(word) == 0) {
-            // print out the explanation for word 
-            String [] features = analyzer.getAllFeatures(
-              expanResult[i]).split(",");
-            tokenAttribute(word, features, linkedTags);
-            piece = piece.substring(word.length(), piece.length()); 
-            if (piece.length() == 0) {
-              System.out.println("breaking now"); 
-              break;
-            }
-            i++;
-            word = analyzer.getSurfaceForm(expanResult[i]);
-            System.out.println("#c# i " + i); 
-            System.out.println("#c# expanResult[i]    " + expanResult[i]); 
-            System.out.println("#c# piece      " + piece +  " ##");
-            System.out.println("#c# word      " + word +  " ##");  
-          }
-          if (piece.length() > 0) {
-            String [] features = analyzer.getAllFeatures(
-              expanResult[i]).split(",");
-            tokenAttribute(piece, features, linkedTags, word);
-          }
-          bPos++; 
-          i++;
-          residual = "";
-        }
-      }*/}
+      }
       else
       {
-        // there are words that haven't been adorned yet 
+        // there are words that haven't been adorned yet
         while ( tPos < result.length &&
             tokenStart[ tPos ] < blockEnd.get( bPos ) )
         {
           String inp = "";
-          if (bPos + 1 < blockList.size() 
-            && !blockList.get(bPos + 1).isNonTag()) {
-            inp = sentence.substring(
+          inp = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
                   Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
-            System.out.println("if inp   " + inp); 
-          } else {
-            inp = sentence.substring(
-                  Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
-                  // by removing Math.min, we assume that tokenEnd[tPos] is 
-                  // smaller than blockEnd.get(bPos)
-                  tokenEnd[ tPos ]);
-            System.out.println("else inp    " + inp);  
+
+          if (VERBOSE) {
+            System.out.println("inp : [" + inp + "]");
+            System.out.println("********" + inp);
+            System.out.println("********" + blockList.get(bPos));
+
+            System.out.println(tokenStart[ tPos ]);
+            System.out.println(blockStart.get( bPos ));
+            System.out.println(tokenEnd[ tPos ]);
+            System.out.println(blockEnd.get( bPos ));
           }
-          System.out.println("inp : [" + inp + "]");
-          System.out.println("********" + inp);
-          System.out.println("********" + blockList.get(bPos));
-          // if (bPos + 1 < blockList.size()) {
-          //   System.out.println("********" + blockList.get(bPos + 1));
-          //   if (!blockList.get(bPos + 1).getTagName().equals("choice")) {
-          //   //  originalAdded = false;
-          //   }
-          // }
-          System.out.println(tokenStart[ tPos ]);
-          System.out.println(blockStart.get( bPos ));
-          System.out.println(tokenEnd[ tPos ]);
-          System.out.println(blockEnd.get( bPos ));
+          // if the block we're looking at is currently ahead of the current
+          // token being processed, then this is a segmented token so don't
+          // apply any adorning
           if ( tokenStart[ tPos ] < blockStart.get( bPos ) )
           {
-            // if blockEnd.get(bPos - 1), meaning when we were at the iteration
-            // of when we observed 浚わ, >= tokenEnd[tPos], then the output 
-            // of this block is not following the kuromoji order; that's why 
-            // we need to continue to the next token; in other words we are 
-            // recreating the Math.min() operation here 
-            if (tokenEnd[ tPos ] >= blockEnd.get( bPos - 1 ) 
-               && bPos - 1 >= 0 
-               && blockList.get(bPos - 1).isNonTag()) {
-              // we've already printed this inp so skip it, as is the case 
-              // when the next character (inp) is on a newline 
-              tPos++; 
-              continue;
-            } else {
-              // if we're here, there is some residual to print out 
+            /*if (bPos - 1 >= 0 && blockList.get(bPos - 1).isNonTag()) {
+              // we've already printed this inp so skip it, as is the case
+              // when the next character (inp) is on a newline
+              indentAndWrite( inp ); // prints the character after </ex>
+              //tPos++;
+              //continue;
+            }
+            else {
+              // if we're here, there is some residual to print out
               System.out.println("writing w/o def  " + inp);
               indentAndWrite( inp ); // prints the character after </ex>
-            }
-            
+
+            }*/
+            indentAndWrite( inp );
           }
           else
           {
+            // we compare temp to kuro in the case that the token is split,
+            // e.g. segmentation by <ex>,<choice> or by newline
             String temp = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
                   Math.min(tokenEnd[ tPos ], blockEnd.get(bPos)));
-            System.out.println("temp " + temp);
+            if (VERBOSE) System.out.println("temp " + temp);
             String kuro = sentence.substring(
                   Math.max( tokenStart[ tPos ], blockStart.get( bPos ) ),
                   tokenEnd[ tPos ]);
-            System.out.println("kuro " + kuro);
+            if (VERBOSE) System.out.println("kuro " + kuro);
 
-            if (!temp.equals(kuro) && 
-              // additional case is if next block happens to be a non-tag, as 
-              // in the case of small-split.xml 
-              bPos + 1 < blockList.size() &&!blockList.get(bPos + 1).isNonTag())
+            if (!temp.equals(kuro)) //&&
+              // additional case is if next block happens to be a non-tag, as
+              // in the case of small-split.xml
+             // bPos + 1 < blockList.size() &&!blockList.get(bPos + 1).isNonTag())
             {
-              tokenAttribute(inp, 
-                analyzer.getAllFeatures(result[ tPos ]).split(","), 
+              tokenAttribute(inp,
+                analyzer.getAllFeatures(result[ tPos ]).split(","),
                 linkedTags, kuro);
-            } else 
+            } else
             {
-              tokenAttribute(inp, 
-                analyzer.getAllFeatures(result[ tPos ]).split(","), 
+              tokenAttribute(inp,
+                analyzer.getAllFeatures(result[ tPos ]).split(","),
                 linkedTags);
             }
-             
+
           }
 
           if ( tokenEnd[ tPos ] <= blockEnd.get( bPos ) )
           {
-            System.out.println("tPos " + tPos + " >> " + (tPos + 1));
+            if (VERBOSE) {
+              System.out.println("tPos " + tPos + " >> " + (tPos + 1));
+            }
             tPos ++;
           }
           else
@@ -755,78 +530,80 @@ public class Adorner
    */
   private void incorporate()
   {
-    System.out.println("blockList " + blockList); 
-    System.out.println("tagStack  " + tagStack);
-    /////  update choice and corr 
-    if (presentBlock.isOpen() 
+    if (VERBOSE) {
+      System.out.println("blockList " + blockList);
+      System.out.println("tagStack  " + tagStack);
+    }
+    /////  update choice and corr
+    if (presentBlock.isOpen()
       && presentBlock.getTagName().equals( "choice" ))
     {
       tagStack.push(presentBlock.getTagName()); // push "choice"
     }
-    else if (presentBlock.isOpen() 
+    else if (presentBlock.isOpen()
       && presentBlock.getTagName().equals("corr"))
     {
       tagStack.push(presentBlock.getTagName());
     }
-    else if (presentBlock.isClose() 
+    else if (presentBlock.isClose()
       && presentBlock.getTagName().equals("corr"))
     {
       tagStack.pop();
     }
-    else if (presentBlock.isOpen() 
+    else if (presentBlock.isOpen()
       && presentBlock.getTagName().equals("reg"))
     {
       tagStack.push(presentBlock.getTagName());
     }
-    else if (presentBlock.isClose() 
+    else if (presentBlock.isClose()
       && presentBlock.getTagName().equals("reg"))
     {
       tagStack.pop();
     }
-    else if (presentBlock.isOpen() 
+    else if (presentBlock.isOpen()
       && presentBlock.getTagName().equals("expan"))
     {
       tagStack.push(presentBlock.getTagName());
     }
-    else if (presentBlock.isClose() 
+    else if (presentBlock.isClose()
       && presentBlock.getTagName().equals("expan"))
     {
       tagStack.pop();
     }
-    else if (presentBlock.isClose() 
+    else if (presentBlock.isClose()
       && presentBlock.getTagName().equals("choice"))
     {
       tagStack.pop();
     }
 
     String comp = "";
-    // not equal to expan is important because otherwise kuromoji will eat 
-    // those characters 
-    if (presentBlock.isNonTag() && tagStack.peek().equals("corr") 
-        && tagStack.contains("expan")) 
+    // not equal to expan is important because otherwise kuromoji will eat
+    // those characters
+    if (presentBlock.isNonTag() && tagStack.peek().equals("corr")
+        && tagStack.contains("expan"))
     {
       //expanToken += presentBlock.getTagName();
       comp += presentBlock.getTagName();
-    } else if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice") 
+    } else if ( presentBlock.isNonTag() && !tagStack.peek().equals("choice")
         && !tagStack.peek().equals("expan"))
     {
       comp = presentBlock.getTagName();
-      System.out.println("in if - comp : " + comp);
-      // we know we are inside <expan>, start building "road" to give to 
-      // kuromoji 
+      if (VERBOSE) System.out.println("in if - comp : " + comp);
+      // we know we are inside <expan>, start building "road" to give to
+      // kuromoji
     } else if (presentBlock.isNonTag() && tagStack.peek().equals("expan")) {
       //expanToken += presentBlock.getTagName();
       comp += presentBlock.getTagName();
-    } 
+    }
 
     blockUse.add( comp.length() > 0 );
     blockStart.add( sentence.length() );
     blockEnd.add( sentence.length() + comp.length() );
     blockList.add( presentBlock );
-    System.out.println(" presentBlock   " + presentBlock);
+    //System.out.println(" presentBlock   " + presentBlock);
     sentence += comp;
-    System.out.println("s : " + sentence);
-    System.out.println(blockList);
+    //System.out.println("s : " + sentence);
+    if (VERBOSE) System.out.println(blockList);
   }
 
   /**
@@ -834,7 +611,7 @@ public class Adorner
    */
   public void process() throws IOException
   {
-    boolean addedSchema = false; 
+    boolean addedSchema = false;
     // skip until <text> is encountered
     while ( iter.hasNext() )
     {
@@ -844,15 +621,15 @@ public class Adorner
       {
         break;
       }
-      // moved here due to apperance of a duplicate <text> tag  
-      if ( presentBlock.isHeader() && !addedSchema && 
+      // moved here due to apperance of a duplicate <text> tag
+      if ( presentBlock.isHeader() && !addedSchema &&
            presentBlock.getTagName().equals( "xml-model" ) )
       {
         // write the appropriate xml model for our schema
-        simpleBlockWrite(new Block( XML_MODEL ) );
+        simpleBlockWrite(new Block( mName ) );
         addedSchema = true;
       } else if (!presentBlock.getTagName().equals( "xml-model" ) ) {
-        simpleBlockWrite( presentBlock ); 
+        simpleBlockWrite( presentBlock );
       }
     }
 
@@ -884,9 +661,9 @@ public class Adorner
         String post = base.substring( pos + 1 );
         if ( post.length() > 0 ) {
           //System.out.println(" !!  >> " + presentBlock.getInput());
-          residual = new Block( post ); 
-          // necessary to update; otherwise duplicate blocks will appear 
-          presentBlock = new Block( pre );  
+          residual = new Block( post );
+          // necessary to update; otherwise duplicate blocks will appear
+          presentBlock = new Block( pre );
           //System.out.println(" CHANGED!!  >> " + presentBlock.getInput());
           //System.out.println(" RESIDUAL! >> " + residual);
         } else {
@@ -897,13 +674,13 @@ public class Adorner
       incorporate();
       if ( pos >= 0 || trigger() )
       {
-        System.out.println("parse sentence called from if");
+        if (VERBOSE) System.out.println("parse sentence called from if");
         parseSentence();
       }
 
       presentBlock = residual;
     }
-    System.out.println("parse sentence called");
+    if (VERBOSE) System.out.println("parse sentence called");
     parseSentence();	// process any remaining blocks
     reader.close();
     writer.flush();

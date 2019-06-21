@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="tei_all_ruby_20170322_4.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:eaj="http://www.example.org/ns/ejaTEI">
+      <text>
+            <body>
+                  <p>
+                        山<choice><sic>賊三人を</sic><corr>賊を三人</corr></choice>も 撃ち倒し韋駄天。
+                  </p>
+
+            </body>
+      </text>
+</TEI>
