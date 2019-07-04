@@ -13,7 +13,7 @@ INPUT_FILE = data/demo.xml
 # name of output file
 OUTPUT_FILE = out/out.xml
 # select the parser to use (Kuromoji, MeCab, Kagome)
-PARSER = Kuromoji
+PARSER = MeCab
 # specify the location of the custom schema
 # (here, relative to the out/ directory)
 XML_MODEL = "../schema/tei_pos.rnc"
@@ -83,15 +83,15 @@ change-to-utf:
 # target for compiling the application
 
 compile:
-	$(CXX) -O3 -c -fpic wrappers/$(TARGET)_wrap.cxx $(INC)
-	$(CXX) $(LIB_TYPE) $(TARGET)_wrap.o -o \
-		lib$(TARGET).$(LIB_EXT) $(LIBS)
-	javac -cp $(KURO_CORE):$(KURO):$(MECAB) src/*.java
+# 	$(CXX) -O3 -c -fpic wrappers/$(TARGET)_wrap.cxx $(INC)
+# 	$(CXX) $(LIB_TYPE) $(TARGET)_wrap.o -o \
+# 		lib$(TARGET).$(LIB_EXT) $(LIBS)
+	javac -cp $(KURO_CORE):$(KURO) src/*.java
 
 # target for running the application
 
 run:
-	java -cp "$(KURO_CORE):$(KURO):$(MECAB):./" src/Main \
+	java -cp "$(KURO_CORE):$(KURO):./" src/Main \
 		--analyze $(PARSER) --input $(INPUT_FILE) \
 		--output $(OUTPUT_FILE) --model $(XML_MODEL)
 

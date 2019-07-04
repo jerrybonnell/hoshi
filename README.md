@@ -63,7 +63,9 @@ Additional requirements are needed for the following parsers..
 
 ### MeCab installation
 
-The target `build-dict` is provided to build MeCab and its dictionary on your system. It is also recommended to change its encoding to UTF-8 by using the `change-to-utf` target.
+Please install `mecab` using a package manager, e.g. Homebrew or apt-get. The incantation will look something like: `brew install mecab`. Try running the utility with sample input and make sure the results don't look like gibberish. If it does, you will need to build the IPADIC dictionary on your system.
+
+The target `build-dict` is provided to build the dictionary on your system. It is also recommended to change its encoding to UTF-8 by using the `change-to-utf` target.
 
 The `mecab-config` program may be needed for successful installation. See [this](https://github.com/mcho421/noj/issues/2) discussion for help or try installing MeCab using a package manager (e.g. Homebrew). Additionally, if  `mecab-dict-index` cannot be found while using the `change-to-utf` target, try changing the makefile variable `MECAB_DICT_INDEX` to point to its correct location.
 

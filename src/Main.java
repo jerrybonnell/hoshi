@@ -44,23 +44,23 @@ import java.util.Iterator;
 //import org.atilika.kuromoji.Tokenizer;
 //import org.atilika.kuromoji.Tokenizer.Mode;
 
-import org.chasen.mecab.MeCab;
-import org.chasen.mecab.Tagger;
-import org.chasen.mecab.Model;
-import org.chasen.mecab.Lattice;
-import org.chasen.mecab.Node;
+// import org.chasen.mecab.MeCab;
+// import org.chasen.mecab.Tagger;
+// import org.chasen.mecab.Model;
+// import org.chasen.mecab.Lattice;
+// import org.chasen.mecab.Node;
 
 public class Main
 {
 
-  static {
-    try {
-       System.loadLibrary("MeCab");
-    } catch (UnsatisfiedLinkError e) {
-       System.err.println("Cannot load the example native code.\nMake sure your LD_LIBRARY_PATH contains \'.\'\n" + e);
-       System.exit(1);
-    }
-  }
+  // static {
+  //   try {
+  //      System.loadLibrary("MeCab");
+  //   } catch (UnsatisfiedLinkError e) {
+  //      System.err.println("Cannot load the example native code.\nMake sure your LD_LIBRARY_PATH contains \'.\'\n" + e);
+  //      System.exit(1);
+  //   }
+  // }
 
   public static final int MARU = 12290;
 
