@@ -73,6 +73,10 @@ The `mecab-config` program may be needed for successful installation. See [this]
 
 To use this parser, please install the [Kagome](https://github.com/ikawaha/kagome) parser on your system.
 
+### Sudachi installation
+
+To use this parser, please install the [Sudachi](https://github.com/WorksApplications/Sudachi) parser on your system. The results generated will depend on the dictionary you installed. See here for the [options](https://github.com/WorksApplications/Sudachi#dictionaries).
+
 ## Supported parsers
 
 Hoshi currently supports the following parsers:
@@ -80,6 +84,7 @@ Hoshi currently supports the following parsers:
 * [Kuromoji](http://www.atilika.com/en/products/kuromoji.html)
 * [MeCab](https://taku910.github.io/mecab/)
 * [Kagome](https://github.com/ikawaha/kagome)
+* [Sudachi](https://github.com/WorksApplications/Sudachi)
 
 The standard IPADIC dictionary is used to build the model for each.
 

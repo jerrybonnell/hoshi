@@ -105,6 +105,8 @@ public class Main
       analyzer = new KuroAnalyzer();
     } else if (aName.equals("Kagome")) {
       analyzer = new KagomeAnalyzer();
+    } else if (aName.equals("Sudachi")) {
+      analyzer = new SudachiAnalyzer();
     } else {
       error();
     }

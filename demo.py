@@ -1,9 +1,11 @@
+"""
+short demo python script to demonstrate querying
+"""
 import sys
 import getopt
 from pprint import pprint
 import re
 
-#command = "pcregrep -n -Mi '<gloss n=\"type1\">副詞</gloss>(\n.*){0,7}<gloss n=\"lemma\">必ず</gloss>' out/test-stack.xml | awk '{print $1}' FS=\"<\" | cut -f1 -d \":\""
 
 def parse(inputs):
     print(inputs)
@@ -21,7 +23,7 @@ def parse(inputs):
     # regex = "(type1=\"助詞\" .*type3=\"引用\".*.*.*.*)"
     # need to do an optimization if we have runs of .*
     regex = re.sub(r'(\.\*)\1+', r'\1', regex)
-    print(regex)
+    #print(regex)
     f = open(inputs['infile'], 'r')
     lines = f.readlines()
     f.close()
@@ -41,7 +43,7 @@ def parse(inputs):
 
     words = set(lis)
     pprint(words)
-    print("num : " + str(len(words)))
+    print("tokens found : " + str(len(words)))
 
 
 def main(argv):
@@ -82,9 +84,16 @@ def main(argv):
         elif opt in ("-p", "--spoken"):
             spoken = arg
 
-    parse({'infile': inputfile, 'type1': type1, 'type2': type2, 'type3': type3,
-           'type4': type4, 'number': number, 'rule': rule, 'root': root,
-           'spelled': spelled, 'spoken': spoken})
+    parse({'infile': inputfile,
+           'type1': type1,
+           'type2': type2,
+           'type3': type3,
+           'type4': type4,
+           'number': number,
+           'rule': rule,
+           'root': root,
+           'spelled': spelled,
+           'spoken': spoken})
 
 
 if __name__ == "__main__":
