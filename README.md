@@ -75,7 +75,9 @@ To use this parser, please install the [Kagome](https://github.com/ikawaha/kagom
 
 ### Sudachi installation
 
-To use this parser, please install the [Sudachi](https://github.com/WorksApplications/Sudachi) parser on your system. The results generated will depend on the dictionary you installed. See here for the [options](https://github.com/WorksApplications/Sudachi#dictionaries).
+To use this parser, please install the Python utility `sudachipy` using [these](https://github.com/WorksApplications/SudachiPy#easy-setup) steps. Please note that the results
+generated will depend on the dictionary you installed. See here for the
+[options](https://github.com/WorksApplications/Sudachi#dictionaries).
 
 ## Supported parsers
 
